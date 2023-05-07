@@ -16,6 +16,7 @@ public:
     CGameObject* FindObjectByName(const wstring& _strName);
     void FindObjectByName(const wstring& _strName, vector<CGameObject*>& _Out);
 
+    void ChangeLevel(CLevel* _NextLevel);
 
 public:
     void init();

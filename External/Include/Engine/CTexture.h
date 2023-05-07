@@ -58,7 +58,7 @@ private:
     virtual void UpdateData() override;
 
 public:
-    CTexture();
+    CTexture(bool _bEngine = false);
     ~CTexture();
 };
 

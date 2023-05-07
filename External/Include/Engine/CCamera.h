@@ -20,9 +20,9 @@ private:
 
     vector<CGameObject*>    m_vecOpaque;
     vector<CGameObject*>    m_vecMask;
-    vector<CGameObject*>    m_vecTransparent;
-    vector<CGameObject*>    m_vecPost;
+    vector<CGameObject*>    m_vecTransparent;    
     vector<CGameObject*>    m_vecUI;
+    vector<CGameObject*>    m_vecPost;
 
 
 
@@ -46,6 +46,7 @@ public:
     void render();
 
 public:
+    virtual void begin() override;
     virtual void finaltick() override;
 
 
@@ -60,6 +61,10 @@ private:
 
     void CalcViewMat();
     void CalcProjMat();
+
+
+    virtual void SaveToLevelFile(FILE* _File) override;
+    virtual void LoadFromLevelFile(FILE* _File) override;
 
     CLONE(CCamera);
 public:    

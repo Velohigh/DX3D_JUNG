@@ -31,7 +31,8 @@ public:
     void OnOverlap(CCollider2D* _Other);
     void EndOverlap(CCollider2D* _Other);
 
-
+    virtual void SaveToLevelFile(FILE* _File) override;
+    virtual void LoadFromLevelFile(FILE* _File) override;
 
     CLONE(CCollider2D);
 public:

@@ -7,6 +7,11 @@ struct tVertex
 	Vec3 vPos;
 	Vec4 vColor;
 	Vec2 vUV;
+
+	// 방향 벡터
+	Vec3 vTangent;	// 접선 벡터
+	Vec3 vNormal;	// 법선 벡터
+	Vec3 vBinormal; // 종법선 벡터
 };
 
 typedef tVertex Vtx;
@@ -41,6 +46,7 @@ struct tLightColor
 {
 	Vec4 vDiffuse;	// 빛의 색상
 	Vec4 vAmbient;	// 주변 광(환경 광)
+	Vec4 vSpecular; // 반사광 세기
 };
 
 // LightInfo

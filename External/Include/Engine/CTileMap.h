@@ -23,6 +23,11 @@ public:
     void SetTileCount(UINT _iXCount, UINT _iYCount);
     void SetSliceSize(Vec2 _vSliceSize)  { m_vSliceSize = _vSliceSize; }
 
+
+    virtual void SaveToLevelFile(FILE* _File) override;
+    virtual void LoadFromLevelFile(FILE* _File) override;
+
+
     CLONE(CTileMap);
 public:
     CTileMap();

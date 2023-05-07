@@ -36,6 +36,9 @@ public:
         m_bFinish = false;
     }
 
+    void SaveToLevelFile(FILE* _File);
+    void LoadFromLevelFile(FILE* _File);
+
 
     CLONE(CAnim2D);
 public:

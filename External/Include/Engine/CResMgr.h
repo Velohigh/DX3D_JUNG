@@ -8,6 +8,7 @@
 #include "CComputeShader.h"
 #include "CMaterial.h"
 #include "CPrefab.h"
+#include "CSound.h"
 
 #include "CPathMgr.h"
 
@@ -25,12 +26,11 @@ public:
     void tick();
 
 private:
+    void InitSound();
     void CreateDefaultMesh();
     void CreateDefaultGraphicsShader();
     void CreateDefaultComputeShader();
-    void CreateDefaultMaterial();
-    void CreateDefaultPrefab();
-    void LoadDefaultTexture();   
+    void CreateDefaultMaterial();  
 
 
 
@@ -54,7 +54,10 @@ public:
     template<typename T>
     Ptr<T> Load(const wstring& _strKey, const wstring& _strRelativePath);
 
+private:
+    void DeleteRes(RES_TYPE _type, const wstring& _strKey);
 
+    friend class CEventMgr;
 };
 
 template<typename T>
@@ -64,7 +67,7 @@ RES_TYPE GetResType()
     //const type_info& meshdata = typeid(CMeshData);
     const type_info& material = typeid(CMaterial);
     const type_info& texture = typeid(CTexture);
-    //const type_info& sound = typeid(CSound);
+    const type_info& sound = typeid(CSound);
     const type_info& prefab = typeid(CPrefab);
     const type_info& gs = typeid(CGraphicsShader);
     const type_info& cs = typeid(CComputeShader);
@@ -81,7 +84,8 @@ RES_TYPE GetResType()
         return RES_TYPE::MATERIAL;
     if (typeid(T).hash_code() == prefab.hash_code())
         return RES_TYPE::PREFAB;
-
+    if (typeid(T).hash_code() == sound.hash_code())
+        return RES_TYPE::SOUND;
 
     return RES_TYPE::END;
 }
@@ -122,7 +126,7 @@ inline Ptr<T> CResMgr::Load(const wstring& _strKey, const wstring& _strRelativeP
     // 이미 해당 키로 리소스가 있다면, 반환
     if (nullptr != pRes)
         return (T*)pRes.Get();
-        
+            
     pRes = new T;
     pRes->SetKey(_strKey);
     pRes->SetRelativePath(_strRelativePath);
