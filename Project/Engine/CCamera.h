@@ -7,6 +7,7 @@ class CCamera :
 private:
     float       m_fAspectRatio;
     float       m_fScale;       // Orthograpic 에서 사용하는 카메라 배율
+    float       m_fFar;
 
     PROJ_TYPE   m_ProjType;
 
@@ -20,7 +21,7 @@ private:
 
     vector<CGameObject*>    m_vecOpaque;
     vector<CGameObject*>    m_vecMask;
-    vector<CGameObject*>    m_vecTransparent;    
+    vector<CGameObject*>    m_vecTransparent;
     vector<CGameObject*>    m_vecUI;
     vector<CGameObject*>    m_vecPost;
 
@@ -32,6 +33,9 @@ public:
 
     void SetScale(float _fScale) { m_fScale = _fScale; }
     float GetScale() { return m_fScale; }
+
+    void SetFar(float _Far) { m_fFar = _Far; }
+    float GetFar() { return m_fFar; }
 
     void SetLayerMask(int _iLayer, bool _Visible);
     void SetLayerMaskAll(bool _Visible);
@@ -67,7 +71,7 @@ private:
     virtual void LoadFromLevelFile(FILE* _File) override;
 
     CLONE(CCamera);
-public:    
+public:
     CCamera();
     CCamera(const CCamera& _Other);
     ~CCamera();

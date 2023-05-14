@@ -19,6 +19,7 @@ CCamera::CCamera()
 	: CComponent(COMPONENT_TYPE::CAMERA)
 	, m_fAspectRatio(1.f)
 	, m_fScale(1.f)
+	, m_fFar(10000.f)
 	, m_ProjType(PROJ_TYPE::ORTHOGRAPHIC)
 	, m_iLayerMask(0)
 	, m_iCamIdx(-1)
@@ -94,12 +95,12 @@ void CCamera::CalcProjMat()
 	{
 		// 직교 투영
 		Vec2 vResolution = CDevice::GetInst()->GetRenderResolution();
-		m_matProj = XMMatrixOrthographicLH(vResolution.x * (1.f / m_fScale), vResolution.y * (1.f / m_fScale), 1.f, 1000.f);
+		m_matProj = XMMatrixOrthographicLH(vResolution.x * (1.f / m_fScale), vResolution.y * (1.f / m_fScale), 1.f, m_fFar);
 	}
 	else
 	{
 		// 원근 투영
-		m_matProj = XMMatrixPerspectiveFovLH(XM_PI / 2.f, m_fAspectRatio, 1.f, 1000.f);
+		m_matProj = XMMatrixPerspectiveFovLH(XM_PI / 2.f, m_fAspectRatio, 1.f, m_fFar);
 	}
 
 }

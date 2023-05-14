@@ -46,7 +46,7 @@ void CEditorObjMgr::init()
 
 	pEditorCamObj->Camera()->SetLayerMaskAll(true);
 	pEditorCamObj->Camera()->SetProjType(PROJ_TYPE::PERSPECTIVE);
-
+	pEditorCamObj->Camera()->SetFar(50000.f);
 
 	m_vecEditorObj.push_back(pEditorCamObj);
 	CRenderMgr::GetInst()->RegisterEditorCamera(pEditorCamObj->Camera());
@@ -107,7 +107,7 @@ void CEditorObjMgr::render()
 		case SHAPE_TYPE::CUBE:
 			break;
 		case SHAPE_TYPE::SPHERE:
-			break;		
+			break;
 		}
 
 		if (iter->matWorld != XMMatrixIdentity())
@@ -121,7 +121,7 @@ void CEditorObjMgr::render()
 			pShapeObj->Transform()->SetRelativeRot(iter->vWorldRotation);
 			pShapeObj->finaltick();
 		}
-		
+
 		pShapeObj->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, &iter->vColor);
 		pShapeObj->render();
 
