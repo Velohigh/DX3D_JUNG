@@ -92,15 +92,15 @@ void CreateTestLevel()
 	pObject->AddComponent(new CMeshRender);
 	pObject->AddComponent(new CPlayerScript);
 
-	pObject->Transform()->SetRelativeScale(Vec3(1000.f, 1000.f, 1.f));
-	pObject->Transform()->SetRelativeRot(Vec3(XM_PI / 2.f, 0.f, 0.f));
+	pObject->Transform()->SetRelativeScale(Vec3(500.f, 500.f, 500.f));
+	pObject->Transform()->SetRelativeRot(Vec3(0.f, 0.f, 0.f));
 
-	pObject->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
+	pObject->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"SphereMesh"));
 	pObject->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std3DMtrl"));
-	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_01.tga"));
+	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03.tga"));
+	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03_N.tga"));
 
-
-	SpawnGameObject(pObject, Vec3(0.f, 0.f, 500.f), 0);
+	SpawnGameObject(pObject, Vec3(0.f, -500.f, 500.f), 0);
 
 
 	// 충돌 시킬 레이어 짝 지정
