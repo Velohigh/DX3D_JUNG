@@ -39,6 +39,7 @@ enum class COMPONENT_TYPE
 	MESHRENDER,		// 기본적인 렌더링
 	PARTICLESYSTEM, // 입자 렌더링
 	TILEMAP,		// 2차원 타일
+	SKYBOX,			// 하늘
 	LANDSCAPE,		// 3차원 지형
 	DECAL,			// 내부 렌더링
 		

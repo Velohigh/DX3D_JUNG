@@ -34,6 +34,9 @@
     <FxCompile Include="std3d.fx">
       <Filter>ShaderCode</Filter>
     </FxCompile>
+    <FxCompile Include="skybox.fx">
+      <Filter>ShaderCode</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CConstBuffer.cpp" />
@@ -151,6 +154,9 @@
       <Filter>Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CTileMap.cpp">
+      <Filter>Component\RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkyBox.cpp">
       <Filter>Component\RenderComponent</Filter>
     </ClCompile>
   </ItemGroup>
@@ -290,6 +296,9 @@
       <Filter>Component\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CTileMap.h">
+      <Filter>Component\RenderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkyBox.h">
       <Filter>Component\RenderComponent</Filter>
     </ClInclude>
   </ItemGroup>

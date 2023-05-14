@@ -48,19 +48,6 @@ void CreateTestLevel()
 
 	SpawnGameObject(pMainCam, Vec3(0.f, 0.f, 0.f), 0);
 
-	// UI cameara
-	CGameObject* pUICam = new CGameObject;
-	pUICam->SetName(L"UICamera");
-
-	pUICam->AddComponent(new CTransform);
-	pUICam->AddComponent(new CCamera);
-
-	pUICam->Camera()->SetProjType(PROJ_TYPE::ORTHOGRAPHIC);
-	pUICam->Camera()->SetCameraIndex(1);		// MainCamera 로 설정
-	pUICam->Camera()->SetLayerMask(31, true);	// 모든 레이어 체크
-
-	SpawnGameObject(pUICam, Vec3(0.f, 0.f, 0.f), 0);
-
 
 	// 광원 추가
 	CGameObject* pLightObj = new CGameObject;
@@ -76,17 +63,31 @@ void CreateTestLevel()
 
 	pLightObj->Light3D()->SetLightDiffuse(Vec3(1.f, 1.f, 1.f));
 	pLightObj->Light3D()->SetLightSpecular(Vec3(0.3f, 0.3f, 0.3f));
-	pLightObj->Light3D()->SetLightAmbient(Vec3(0.1f, 0.1f, 0.1f));	
+	pLightObj->Light3D()->SetLightAmbient(Vec3(0.1f, 0.1f, 0.1f));
 
 
 	SpawnGameObject(pLightObj, Vec3(0.f, 0.f, 0.f), 0);
+
+
+	CGameObject* pSkyBox  = new CGameObject;
+	pSkyBox->SetName(L"SkyBox");
+
+	pSkyBox->AddComponent(new CTransform);
+	pSkyBox->AddComponent(new CSkyBox);
+
+	pSkyBox->Transform()->SetRelativeScale(Vec3(100.f, 100.f, 100.f));
+	pSkyBox->Transform()->SetRelativeRot(Vec3(0.f, XM_PI / 2.f, 0.f));
+
+	pSkyBox->SkyBox()->GetMaterial()->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\skybox\\Sky01.png"));
+
+	SpawnGameObject(pSkyBox, Vec3(0.f, 0.f, 0.f), 0);
 
 
 	// 오브젝트 생성
 	CGameObject* pParent = new CGameObject;
 	pParent->SetName(L"Player");
 	pParent->AddComponent(new CTransform);
-	pParent->AddComponent(new CMeshRender);	
+	pParent->AddComponent(new CMeshRender);
 	pParent->AddComponent(new CPlayerScript);
 
 	pParent->Transform()->SetRelativeScale(Vec3(200.f, 200.f, 200.f));
@@ -95,7 +96,7 @@ void CreateTestLevel()
 	pParent->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std3DMtrl"));
 
 	SpawnGameObject(pParent, Vec3(0.f, 0.f, 500.f), 0);
-				
+
 	// 충돌 시킬 레이어 짝 지정
-	CCollisionMgr::GetInst()->LayerCheck(L"Player", L"Monster");	
+	CCollisionMgr::GetInst()->LayerCheck(L"Player", L"Monster");
 }

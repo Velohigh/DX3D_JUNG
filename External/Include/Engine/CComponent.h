@@ -15,12 +15,12 @@ class CComponent :
     public CEntity
 {
 private:
-    CGameObject*         m_pOwner;
+    CGameObject* m_pOwner;
     const COMPONENT_TYPE m_Type;
 
 public:
     COMPONENT_TYPE GetType() { return m_Type; }
-    CGameObject* GetOwner() { return m_pOwner ; }
+    CGameObject* GetOwner() { return m_pOwner; }
 
 public:
     virtual void begin() {}
@@ -40,6 +40,7 @@ public:
     GET_OTHER_COMPONENT(Light2D);
     GET_OTHER_COMPONENT(Light3D);
     GET_OTHER_COMPONENT(TileMap);
+    GET_OTHER_COMPONENT(SkyBox);
     GET_OTHER_COMPONENT(Animator2D);
 
 public:
