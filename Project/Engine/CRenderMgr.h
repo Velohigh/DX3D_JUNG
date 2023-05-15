@@ -7,27 +7,32 @@
 class CCamera;
 class CLight2D;
 class CStructuredBuffer;
+class CMRT;
 
 class CRenderMgr :
     public CSingleton<CRenderMgr>
 {
     SINGLE(CRenderMgr);
 private:
+    CMRT* m_MRT[(UINT)MRT_TYPE::END];
+
     vector<CCamera*>            m_vecCam;
-    CCamera*                    m_pEditorCam;
+    CCamera* m_pEditorCam;
 
     vector<tDebugShapeInfo>     m_vecShapeInfo;
 
     vector<tLightInfo>          m_vecLight2D;
-    CStructuredBuffer*          m_Light2DBuffer;
+    CStructuredBuffer* m_Light2DBuffer;
 
     vector<tLightInfo>          m_vecLight3D;
-    CStructuredBuffer*          m_Light3DBuffer;
+    CStructuredBuffer* m_Light3DBuffer;
 
 
     void (CRenderMgr::* RENDER_FUNC)(void);
 
     Ptr<CTexture>               m_RTCopyTex;
+
+
 
 
 public:
@@ -47,8 +52,8 @@ public:
     void AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_vecShapeInfo.push_back(_info); }
     vector<tDebugShapeInfo>& GetDebugShapeInfo() { return m_vecShapeInfo; }
 
-    CCamera* GetMainCam() 
-    { 
+    CCamera* GetMainCam()
+    {
         if (m_vecCam.empty())
             return nullptr;
 

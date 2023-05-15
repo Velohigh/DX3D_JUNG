@@ -9,6 +9,7 @@
 #include "CLight2D.h"
 
 #include "CResMgr.h"
+#include "CMRT.h"
 
 CRenderMgr::CRenderMgr()
     : m_Light2DBuffer(nullptr)
@@ -17,9 +18,9 @@ CRenderMgr::CRenderMgr()
 {
     Vec2 vResolution = CDevice::GetInst()->GetRenderResolution();
     m_RTCopyTex = CResMgr::GetInst()->CreateTexture(L"RTCopyTex"
-                                                    , (UINT)vResolution.x, (UINT)vResolution.y
-                                                    , DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE
-                                                    , D3D11_USAGE_DEFAULT);
+        , (UINT)vResolution.x, (UINT)vResolution.y
+        , DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE
+        , D3D11_USAGE_DEFAULT);
 
     CResMgr::GetInst()->FindRes<CMaterial>(L"GrayMtrl")->SetTexParam(TEX_0, m_RTCopyTex);
 
@@ -31,9 +32,10 @@ CRenderMgr::~CRenderMgr()
     if (nullptr != m_Light2DBuffer)
         delete m_Light2DBuffer;
 
-
     if (nullptr != m_Light3DBuffer)
         delete m_Light3DBuffer;
+
+    Safe_Del_Array(m_MRT);
 }
 
 
@@ -46,23 +48,37 @@ void CRenderMgr::init()
     // Light3DBuffer 구조화 버퍼 생성
     m_Light3DBuffer = new CStructuredBuffer;
     m_Light3DBuffer->Create(sizeof(tLightInfo), 10, SB_TYPE::READ_ONLY, true);
+
+
+    // ==================
+    // SwapChain MRT 생성
+    // ==================
+    Ptr<CTexture> arrRTTex[8] = { CResMgr::GetInst()->FindRes<CTexture>(L"RenderTargetTex"), };
+    Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
+
+    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN] = new CMRT;
+    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Create(arrRTTex, DSTex);
+
+    // ========
+    // Test MRT
+    // ========
 }
 
 void CRenderMgr::render()
 {
     // 렌더링 시작
     float arrColor[4] = { 0.2f, 0.2f, 0.2f, 1.f };
-    CDevice::GetInst()->ClearTarget(arrColor);
+    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Clear(arrColor);
 
     // 출력 타겟 지정    
-    CDevice::GetInst()->OMSet();
+    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
 
     // 광원 및 전역 데이터 업데이트 및 바인딩
     UpdateData();
 
     // 렌더 함수 호출
     (this->*RENDER_FUNC)();
-    
+
     // 광원 해제
     Clear();
 }
@@ -84,7 +100,7 @@ void CRenderMgr::render_play()
 void CRenderMgr::render_editor()
 {
     m_pEditorCam->SortObject();
-    m_pEditorCam->render();    
+    m_pEditorCam->render();
 }
 
 
@@ -95,13 +111,13 @@ int CRenderMgr::RegisterCamera(CCamera* _Cam, int _idx)
         m_vecCam.resize(_idx + 1);
     }
 
-    m_vecCam[_idx] = _Cam;    
+    m_vecCam[_idx] = _Cam;
     return _idx;
 }
 
 void CRenderMgr::SetRenderFunc(bool _IsPlay)
 {
-    if(_IsPlay)
+    if (_IsPlay)
         RENDER_FUNC = &CRenderMgr::render_play;
     else
         RENDER_FUNC = &CRenderMgr::render_editor;

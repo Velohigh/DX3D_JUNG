@@ -1,330 +1,394 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="postprocess.fx">
-      <Filter>ShaderCode</Filter>
-    </FxCompile>
-    <FxCompile Include="setcolor.fx">
-      <Filter>ShaderCode</Filter>
-    </FxCompile>
-    <FxCompile Include="std2d.fx">
-      <Filter>ShaderCode</Filter>
+    <FxCompile Include="func.fx">
+      <Filter>05. ShaderCode\01. Header</Filter>
     </FxCompile>
     <FxCompile Include="struct.fx">
-      <Filter>ShaderCode</Filter>
-    </FxCompile>
-    <FxCompile Include="tilemap.fx">
-      <Filter>ShaderCode</Filter>
+      <Filter>05. ShaderCode\01. Header</Filter>
     </FxCompile>
     <FxCompile Include="value.fx">
-      <Filter>ShaderCode</Filter>
-    </FxCompile>
-    <FxCompile Include="func.fx">
-      <Filter>ShaderCode</Filter>
+      <Filter>05. ShaderCode\01. Header</Filter>
     </FxCompile>
     <FxCompile Include="debugshape.fx">
-      <Filter>ShaderCode</Filter>
-    </FxCompile>
-    <FxCompile Include="particle_update.fx">
-      <Filter>ShaderCode</Filter>
+      <Filter>05. ShaderCode\02. Render</Filter>
     </FxCompile>
     <FxCompile Include="particle_render.fx">
-      <Filter>ShaderCode</Filter>
+      <Filter>05. ShaderCode\02. Render</Filter>
     </FxCompile>
-    <FxCompile Include="std3d.fx">
-      <Filter>ShaderCode</Filter>
+    <FxCompile Include="postprocess.fx">
+      <Filter>05. ShaderCode\02. Render\2D</Filter>
+    </FxCompile>
+    <FxCompile Include="std2d.fx">
+      <Filter>05. ShaderCode\02. Render\2D</Filter>
+    </FxCompile>
+    <FxCompile Include="tilemap.fx">
+      <Filter>05. ShaderCode\02. Render\2D</Filter>
     </FxCompile>
     <FxCompile Include="skybox.fx">
-      <Filter>ShaderCode</Filter>
+      <Filter>05. ShaderCode\02. Render\3D</Filter>
+    </FxCompile>
+    <FxCompile Include="std3d.fx">
+      <Filter>05. ShaderCode\02. Render\3D</Filter>
+    </FxCompile>
+    <FxCompile Include="particle_update.fx">
+      <Filter>05. ShaderCode\03. Compute</Filter>
+    </FxCompile>
+    <FxCompile Include="setcolor.fx">
+      <Filter>05. ShaderCode\03. Compute</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CConstBuffer.cpp" />
     <ClCompile Include="CEntity.cpp" />
-    <ClCompile Include="CGameObject.cpp" />
-    <ClCompile Include="CLayer.cpp" />
-    <ClCompile Include="CLevel.cpp" />
-    <ClCompile Include="CParticleUpdateShader.cpp" />
-    <ClCompile Include="CSetColorShader.cpp" />
-    <ClCompile Include="CStructuredBuffer.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="CAnim2D.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CAnimator2D.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CCollider2D.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CComponent.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CComputeShader.cpp">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CDevice.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CEngine.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CEventMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CFontMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CLevelMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CGraphicsShader.cpp">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CMaterial.cpp">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CMesh.cpp">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CLight2D.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CPrefab.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CTransform.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CScript.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CRenderMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="func.cpp">
-      <Filter>header</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CSound.cpp">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CRes.cpp">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CShader.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>header</Filter>
-    </ClCompile>
-    <ClCompile Include="extern.cpp">
-      <Filter>header</Filter>
+      <Filter>04. Resource</Filter>
     </ClCompile>
     <ClCompile Include="CResMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CLight3D.cpp">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CMeshRender.cpp">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CParticleSystem.cpp">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CRenderComponent.cpp">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CTileMap.cpp">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CSkyBox.cpp">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="extern.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject.cpp">
+      <Filter>03. CGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CParticleUpdateShader.cpp">
+      <Filter>05. ShaderCode\03. Compute</Filter>
+    </ClCompile>
+    <ClCompile Include="CSetColorShader.cpp">
+      <Filter>05. ShaderCode\03. Compute</Filter>
+    </ClCompile>
+    <ClCompile Include="CConstBuffer.cpp">
+      <Filter>07. Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CStructuredBuffer.cpp">
+      <Filter>07. Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CLayer.cpp">
+      <Filter>06. Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp">
+      <Filter>06. Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CMRT.cpp">
+      <Filter>08. MRT</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CConstBuffer.h" />
     <ClInclude Include="CEntity.h" />
-    <ClInclude Include="CGameObject.h" />
-    <ClInclude Include="CLayer.h" />
-    <ClInclude Include="CLevel.h" />
-    <ClInclude Include="CParticleUpdateShader.h" />
-    <ClInclude Include="CSetColorShader.h" />
-    <ClInclude Include="CStructuredBuffer.h" />
     <ClInclude Include="CAnim2D.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CAnimator2D.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CCamera.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CCollider2D.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CCollisionMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CComponent.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CComputeShader.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="CDevice.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CEngine.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CEventMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CFontMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CLevelMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CGraphicsShader.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="CMaterial.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="CMesh.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="CLight2D.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="components.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="CPrefab.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CTransform.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CScript.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CRenderMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="global.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="CSingleton.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="CTexture.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="CSound.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="CRes.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="CShader.h">
-      <Filter>Resource</Filter>
+      <Filter>04. Resource</Filter>
     </ClInclude>
     <ClInclude Include="func.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="struct.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="ptr.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>header</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </ClInclude>
     <ClInclude Include="CResMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CLight3D.h">
-      <Filter>Component</Filter>
+      <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CMeshRender.h">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CParticleSystem.h">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CRenderComponent.h">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CTileMap.h">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="CSkyBox.h">
-      <Filter>Component\RenderComponent</Filter>
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameObject.h">
+      <Filter>03. CGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CParticleUpdateShader.h">
+      <Filter>05. ShaderCode\03. Compute</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetColorShader.h">
+      <Filter>05. ShaderCode\03. Compute</Filter>
+    </ClInclude>
+    <ClInclude Include="CConstBuffer.h">
+      <Filter>07. Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="CStructuredBuffer.h">
+      <Filter>07. Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="CLayer.h">
+      <Filter>06. Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel.h">
+      <Filter>06. Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CMRT.h">
+      <Filter>08. MRT</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Component">
-      <UniqueIdentifier>{ad704555-61f7-45fb-9c5b-04603be05800}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{4fbc524d-557e-41b9-9293-067af8c42ecd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="header">
+    <Filter Include="01. header">
       <UniqueIdentifier>{4549b324-204a-4360-8422-8ea0a013e6f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager">
+    <Filter Include="02. Manager">
       <UniqueIdentifier>{830b9d4d-530e-42eb-8f44-7a781a1cedd3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ShaderCode">
+    <Filter Include="05. ShaderCode">
       <UniqueIdentifier>{15b6b9d7-1520-41ab-ac99-8b1cfe0a51d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\RenderComponent">
+    <Filter Include="04. Resource">
+      <UniqueIdentifier>{4fbc524d-557e-41b9-9293-067af8c42ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. CGameObject">
+      <UniqueIdentifier>{2b6a0024-4123-4a3c-9117-79748e03f505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. CGameObject\Component">
+      <UniqueIdentifier>{ad704555-61f7-45fb-9c5b-04603be05800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. CGameObject\Component\RenderComponent">
       <UniqueIdentifier>{3ae703e4-fa1b-4106-b337-e7cc537b582c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{c613b722-6c50-4ad2-aff8-5e8bdae684ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. MRT">
+      <UniqueIdentifier>{a5abcef3-6016-46db-84fa-19efdce00a95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\01. Header">
+      <UniqueIdentifier>{a92d3aa6-3f00-49a2-b990-2c8a5c6af330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\02. Render">
+      <UniqueIdentifier>{453a81ed-7056-4f4b-9ec9-252c646b7cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\02. Render\2D">
+      <UniqueIdentifier>{0a9ef8af-8ee0-4b32-abaa-844d7348d84e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\02. Render\3D">
+      <UniqueIdentifier>{de91b571-d247-4496-ab00-9d788c45166a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\03. Compute">
+      <UniqueIdentifier>{31961425-7987-4bd6-a12b-6f7706893081}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. Buffer">
+      <UniqueIdentifier>{19974b2e-af7d-44c2-afb3-478f4079ae77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Level">
+      <UniqueIdentifier>{9b585ac4-9db7-4b4e-979d-11c6ea0bce84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
-      <Filter>header</Filter>
+      <Filter>01. header</Filter>
     </None>
   </ItemGroup>
 </Project>
