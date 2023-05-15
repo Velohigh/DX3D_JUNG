@@ -14,6 +14,8 @@
 #include "CMaterial.h"
 #include "CGraphicsShader.h"
 
+#include "CMRT.h"
+
 
 CCamera::CCamera()
 	: CComponent(COMPONENT_TYPE::CAMERA)
@@ -163,6 +165,9 @@ void CCamera::SortObject()
 				SHADER_DOMAIN eDomain = pRenderCom->GetMaterial()->GetShader()->GetDomain();
 				switch (eDomain)
 				{
+				case SHADER_DOMAIN::DOMAIN_DEFERRED:
+					m_vecDeferred.push_back(vecObject[j]);
+					break;
 				case SHADER_DOMAIN::DOMAIN_OPAQUE:
 					m_vecOpaque.push_back(vecObject[j]);
 					break;
@@ -191,6 +196,11 @@ void CCamera::render()
 	g_transform.matProj = m_matProj;
 
 	// 쉐이더 도메인에 따라서 순차적으로 그리기
+	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::DEFERRED)->OMSet();
+	render_deferred();
+
+
+	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::SWAPCHAIN)->OMSet();
 	render_opaque();
 	render_mask();
 	render_transparent();
@@ -205,11 +215,20 @@ void CCamera::render()
 
 void CCamera::clear()
 {
+	m_vecDeferred.clear();
 	m_vecOpaque.clear();
 	m_vecMask.clear();
 	m_vecTransparent.clear();
 	m_vecPost.clear();
 	m_vecUI.clear();
+}
+
+void CCamera::render_deferred()
+{
+	for (size_t i = 0; i < m_vecDeferred.size(); ++i)
+	{
+		m_vecDeferred[i]->render();
+	}
 }
 
 void CCamera::render_opaque()

@@ -37,6 +37,9 @@
     <FxCompile Include="setcolor.fx">
       <Filter>05. ShaderCode\03. Compute</Filter>
     </FxCompile>
+    <FxCompile Include="std3d_deferred.fx">
+      <Filter>05. ShaderCode\02. Render\3D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEntity.cpp" />

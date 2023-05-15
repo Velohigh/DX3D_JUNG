@@ -22,6 +22,7 @@
 enum class MRT_TYPE
 {
 	SWAPCHAIN,
+	DEFERRED,
 	END,
 };
 
@@ -196,6 +197,10 @@ enum class PROJ_TYPE
 
 enum class SHADER_DOMAIN
 {
+	// Deferred
+	DOMAIN_DEFERRED,
+
+	// SwapChain
 	DOMAIN_OPAQUE,		// 불투명 오브젝트
 	DOMAIN_MASK,		// 불투명, 투명
 	DOMAIN_TRANSPARENT,	// 반투명

@@ -15,9 +15,6 @@ private:
 
 	ComPtr<IDXGISwapChain>			m_SwapChain;
 
-	Ptr<CTexture>					m_RTTex;
-	Ptr<CTexture>					m_DSTex;
-
 	// Sampler
 	ComPtr<ID3D11SamplerState>		m_Sampler[2];
 
@@ -34,18 +31,14 @@ private:
 	D3D11_VIEWPORT					m_ViewPort;
 
 	// ·»´õÅ¸°Ù ÇØ»óµµ
-	Vec2							m_vRenderResolution;							
-	CConstBuffer*					m_arrConstBuffer[(UINT)CB_TYPE::END];
-
-
+	Vec2							m_vRenderResolution;
+	CConstBuffer* m_arrConstBuffer[(UINT)CB_TYPE::END];
 
 
 
 public:
 	int init(HWND _hWnd, UINT _iWidth, UINT _iHeight);
-	void ClearTarget(float(&_color)[4]);
-	void OMSet() { m_Context->OMSetRenderTargets(1, m_RTTex->GetRTV().GetAddressOf(), m_DSTex->GetDSV().Get()); }
-	void Present()	{ m_SwapChain->Present(0, 0); }
+	void Present() { m_SwapChain->Present(0, 0); }
 
 	Vec2 GetRenderResolution() { return m_vRenderResolution; }
 
@@ -58,7 +51,7 @@ private:
 	int CreateSampler();
 	void CreateConstBuffer();
 
-public:	
+public:
 
 	ID3D11Device* GetDevice() { return m_Device.Get(); }
 	ID3D11DeviceContext* GetDeviceContext() { return m_Context.Get(); }

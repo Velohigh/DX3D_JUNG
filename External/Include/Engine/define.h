@@ -19,7 +19,12 @@
 
 
 
-
+enum class MRT_TYPE
+{
+	SWAPCHAIN,
+	DEFERRED,
+	END,
+};
 
 
 
@@ -42,7 +47,7 @@ enum class COMPONENT_TYPE
 	SKYBOX,			// 하늘
 	LANDSCAPE,		// 3차원 지형
 	DECAL,			// 내부 렌더링
-		
+
 	END,
 
 	// custom
@@ -109,7 +114,7 @@ enum SCALAR_PARAM
 	MAT_0,
 	MAT_1,
 	MAT_2,
-	MAT_3,	
+	MAT_3,
 };
 
 enum TEX_PARAM
@@ -138,9 +143,9 @@ enum PIPELINE_STAGE
 	PS_HULL = 0x02,
 	PS_DOMAIN = 0x04,
 	PS_GEOMETRY = 0x08,
-	PS_PIXEL = 0x10,	
+	PS_PIXEL = 0x10,
 
-	PS_ALL = PS_VERTEX | PS_HULL | PS_DOMAIN | PS_GEOMETRY | PS_PIXEL,	
+	PS_ALL = PS_VERTEX | PS_HULL | PS_DOMAIN | PS_GEOMETRY | PS_PIXEL,
 };
 
 enum class RS_TYPE
@@ -181,7 +186,7 @@ enum class DIR_TYPE
 {
 	RIGHT,
 	UP,
-	FRONT,	
+	FRONT,
 };
 
 enum class PROJ_TYPE
@@ -192,6 +197,10 @@ enum class PROJ_TYPE
 
 enum class SHADER_DOMAIN
 {
+	// Deferred
+	DOMAIN_DEFERRED,
+
+	// SwapChain
 	DOMAIN_OPAQUE,		// 불투명 오브젝트
 	DOMAIN_MASK,		// 불투명, 투명
 	DOMAIN_TRANSPARENT,	// 반투명
@@ -210,7 +219,7 @@ enum class EVENT_TYPE
 
 	DELETE_RESOURCE,	// wParam : RES_TYPE, lParam : Resource Adress
 
-	LEVEL_CHANGE,	
+	LEVEL_CHANGE,
 };
 
 

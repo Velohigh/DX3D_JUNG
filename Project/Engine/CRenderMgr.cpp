@@ -53,25 +53,54 @@ void CRenderMgr::init()
     // ==================
     // SwapChain MRT 생성
     // ==================
-    Ptr<CTexture> arrRTTex[8] = { CResMgr::GetInst()->FindRes<CTexture>(L"RenderTargetTex"), };
-    Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
+    {
+        Ptr<CTexture> arrRTTex[8] = { CResMgr::GetInst()->FindRes<CTexture>(L"RenderTargetTex"), };
+        Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
 
-    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN] = new CMRT;
-    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Create(arrRTTex, DSTex);
+        m_MRT[(UINT)MRT_TYPE::SWAPCHAIN] = new CMRT;
+        m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Create(arrRTTex, DSTex);
+    }
 
-    // ========
-    // Test MRT
-    // ========
+    // ============
+    // Deferred MRT
+    // ============
+    {
+        Vec2 vRenderResolotion = CDevice::GetInst()->GetRenderResolution();
+
+        Ptr<CTexture> arrRTTex[8] = {
+              CResMgr::GetInst()->CreateTexture(L"ColorTargetTex"
+                , vRenderResolotion.x, vRenderResolotion.y
+                , DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
+                , D3D11_USAGE_DEFAULT),
+
+              CResMgr::GetInst()->CreateTexture(L"NormalTargetTex"
+                , vRenderResolotion.x, vRenderResolotion.y
+                , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
+                , D3D11_USAGE_DEFAULT),
+
+             CResMgr::GetInst()->CreateTexture(L"PositionTargetTex"
+                , vRenderResolotion.x, vRenderResolotion.y
+                , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
+                , D3D11_USAGE_DEFAULT),
+
+             CResMgr::GetInst()->CreateTexture(L"DataTargetTex"
+                , vRenderResolotion.x, vRenderResolotion.y
+                , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
+                , D3D11_USAGE_DEFAULT),
+        };
+
+        Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
+
+        m_MRT[(UINT)MRT_TYPE::DEFERRED] = new CMRT;
+        m_MRT[(UINT)MRT_TYPE::DEFERRED]->Create(arrRTTex, DSTex);
+    }
+
 }
 
 void CRenderMgr::render()
 {
     // 렌더링 시작
-    float arrColor[4] = { 0.2f, 0.2f, 0.2f, 1.f };
-    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Clear(arrColor);
-
-    // 출력 타겟 지정    
-    m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
+    MRT_Clear();
 
     // 광원 및 전역 데이터 업데이트 및 바인딩
     UpdateData();
@@ -127,6 +156,16 @@ void CRenderMgr::CopyRenderTarget()
 {
     Ptr<CTexture> pRTTex = CResMgr::GetInst()->FindRes<CTexture>(L"RenderTargetTex");
     CONTEXT->CopyResource(m_RTCopyTex->GetTex2D().Get(), pRTTex->GetTex2D().Get());
+}
+
+void CRenderMgr::MRT_Clear()
+{
+    float arrColor[4] = { 0.2f, 0.2f, 0.2f, 1.f };
+
+    for (UINT i = 0; i < (UINT)MRT_TYPE::END; ++i)
+    {
+        m_MRT[i]->Clear(arrColor);
+    }
 }
 
 void CRenderMgr::UpdateData()

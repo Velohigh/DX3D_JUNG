@@ -40,6 +40,8 @@ public:
     void render();
 
 public:
+    CMRT* GetMRT(MRT_TYPE _type) { return m_MRT[(UINT)_type]; }
+
     int RegisterCamera(CCamera* _Cam, int _idx);
     void RegisterEditorCamera(CCamera* _Cam) { m_pEditorCam = _Cam; }
     void SetRenderFunc(bool _IsPlay);
@@ -63,6 +65,7 @@ public:
     void CopyRenderTarget();
 
 private:
+    void MRT_Clear();
     void UpdateData();
     void render_play();
     void render_editor();
