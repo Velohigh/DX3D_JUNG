@@ -59,7 +59,9 @@ void CreateTestLevel()
 	pLightObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
 	pLightObj->Transform()->SetRelativeRot(Vec3(XM_PI / 7.f, -XM_PI / 2.f, 0.f));
 
-	pLightObj->Light3D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
+	pLightObj->Light3D()->SetLightType(LIGHT_TYPE::SPOT);
+	pLightObj->Light3D()->SetRadius(1000.f);
+	pLightObj->Light3D()->SetAngle(XM_PI / 4.f);
 
 	//pLightObj->Light3D()->SetLightDiffuse(Vec3(0.8f, 0.4f, 0.3f));
 	pLightObj->Light3D()->SetLightDiffuse(Vec3(1.f, 1.f, 1.f));
