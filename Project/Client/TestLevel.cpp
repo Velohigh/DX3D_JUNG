@@ -59,16 +59,22 @@ void CreateTestLevel()
 	pLightObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
 	pLightObj->Transform()->SetRelativeRot(Vec3(XM_PI / 7.f, -XM_PI / 2.f, 0.f));
 
-	pLightObj->Light3D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightObj->Light3D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
 
 	pLightObj->Light3D()->SetLightDiffuse(Vec3(1.f, 1.f, 1.f));
 	pLightObj->Light3D()->SetLightSpecular(Vec3(0.f, 0.f, 0.f));
 	pLightObj->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
 
-	pLightObj->Light3D()->SetRadius(500.f);
+	pLightObj->Light3D()->SetRadius(1000.f);
+
+	SpawnGameObject(pLightObj, Vec3(-200.f, 0.f, 0.f), 0);
 
 
-	SpawnGameObject(pLightObj, Vec3(0.f, 0.f, 0.f), 0);
+	// 광원 하나 더 추가
+	/*pLightObj = pLightObj->Clone();
+	pLightObj->SetName(L"Point Light 2");
+	pLightObj->Light3D()->SetLightDiffuse(Vec3(0.4f, 0.4f, 1.f));
+	SpawnGameObject(pLightObj, Vec3(200.f, 0.f, 0.f), 0);*/
 
 
 	CGameObject* pSkyBox = new CGameObject;
@@ -98,12 +104,12 @@ void CreateTestLevel()
 
 	pObject->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	pObject->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std3DMtrl"));
-	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03.tga"));
-	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03_N.tga"));
+	//pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03.tga"));
+	//pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03_N.tga"));
 
 	SpawnGameObject(pObject, Vec3(0.f, -500.f, 500.f), 0);
 
-	/*pObject = new CGameObject;
+	pObject = new CGameObject;
 	pObject->SetName(L"Player_Deferred");
 	pObject->AddComponent(new CTransform);
 	pObject->AddComponent(new CMeshRender);
@@ -117,7 +123,7 @@ void CreateTestLevel()
 	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03.tga"));
 	pObject->MeshRender()->GetMaterial()->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03_N.tga"));
 
-	SpawnGameObject(pObject, Vec3(0.f, -1000.f, 500.f), 0);*/
+	SpawnGameObject(pObject, Vec3(0.f, -1000.f, 500.f), 0);
 
 	// 충돌 시킬 레이어 짝 지정
 	CCollisionMgr::GetInst()->LayerCheck(L"Player", L"Monster");

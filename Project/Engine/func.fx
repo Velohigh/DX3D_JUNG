@@ -110,9 +110,9 @@ void CalcLight3D(float3 _vViewPos, float3 _vViewNormal, uint _LightIdx, inout tL
     float fRelfectPow = pow(saturate(dot(vViewReflect, vEye)), 10);
     
     // 결과값 저장
-    _LightColor.vDiffuse = lightinfo.Color.vDiffuse * fPow * fDistPow;
-    _LightColor.vSpecular = lightinfo.Color.vSpecular * fRelfectPow * fDistPow;
-    _LightColor.vAmbient = lightinfo.Color.vAmbient;
+    _LightColor.vDiffuse += lightinfo.Color.vDiffuse * fPow * fDistPow;
+    _LightColor.vSpecular += lightinfo.Color.vSpecular * fRelfectPow * fDistPow;
+    _LightColor.vAmbient += lightinfo.Color.vAmbient;
 }
 
 

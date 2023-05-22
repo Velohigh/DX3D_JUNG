@@ -15,6 +15,7 @@
 #include "CGraphicsShader.h"
 
 #include "CMRT.h"
+#include "CLight3D.h"
 
 
 CCamera::CCamera()
@@ -195,12 +196,29 @@ void CCamera::render()
 	g_transform.matView = m_matView;
 	g_transform.matProj = m_matProj;
 
+	// =====================================
 	// 쉐이더 도메인에 따라서 순차적으로 그리기
+	// =====================================
+
+	// Deferred Object
 	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::DEFERRED)->OMSet();
 	render_deferred();
 
+	// Lighting
+	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::LIGHT)->OMSet();
 
+	const vector<CLight3D*> vecLight3D = CRenderMgr::GetInst()->GetLight3D();
+	for (size_t i = 0; i < vecLight3D.size(); ++i)
+	{
+		vecLight3D[i]->render();
+	}
+
+	// (Deferred + Light) Merge
 	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::SWAPCHAIN)->OMSet();
+	//render_merge();
+
+
+	// Forward Object	
 	render_opaque();
 	render_mask();
 	render_transparent();

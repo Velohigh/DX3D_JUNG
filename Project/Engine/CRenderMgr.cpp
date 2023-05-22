@@ -11,6 +11,9 @@
 #include "CResMgr.h"
 #include "CMRT.h"
 
+#include "CLight2D.h"
+#include "CLight3D.h"
+
 CRenderMgr::CRenderMgr()
     : m_Light2DBuffer(nullptr)
     , RENDER_FUNC(nullptr)
@@ -36,65 +39,6 @@ CRenderMgr::~CRenderMgr()
         delete m_Light3DBuffer;
 
     Safe_Del_Array(m_MRT);
-}
-
-
-void CRenderMgr::init()
-{
-    // Light2DBuffer 구조화 버퍼 생성
-    m_Light2DBuffer = new CStructuredBuffer;
-    m_Light2DBuffer->Create(sizeof(tLightInfo), 10, SB_TYPE::READ_ONLY, true);
-
-    // Light3DBuffer 구조화 버퍼 생성
-    m_Light3DBuffer = new CStructuredBuffer;
-    m_Light3DBuffer->Create(sizeof(tLightInfo), 10, SB_TYPE::READ_ONLY, true);
-
-
-    // ==================
-    // SwapChain MRT 생성
-    // ==================
-    {
-        Ptr<CTexture> arrRTTex[8] = { CResMgr::GetInst()->FindRes<CTexture>(L"RenderTargetTex"), };
-        Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
-
-        m_MRT[(UINT)MRT_TYPE::SWAPCHAIN] = new CMRT;
-        m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Create(arrRTTex, DSTex);
-    }
-
-    // ============
-    // Deferred MRT
-    // ============
-    {
-        Vec2 vRenderResolotion = CDevice::GetInst()->GetRenderResolution();
-
-        Ptr<CTexture> arrRTTex[8] = {
-              CResMgr::GetInst()->CreateTexture(L"ColorTargetTex"
-                , vRenderResolotion.x, vRenderResolotion.y
-                , DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
-                , D3D11_USAGE_DEFAULT),
-
-              CResMgr::GetInst()->CreateTexture(L"NormalTargetTex"
-                , vRenderResolotion.x, vRenderResolotion.y
-                , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
-                , D3D11_USAGE_DEFAULT),
-
-             CResMgr::GetInst()->CreateTexture(L"PositionTargetTex"
-                , vRenderResolotion.x, vRenderResolotion.y
-                , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
-                , D3D11_USAGE_DEFAULT),
-
-             CResMgr::GetInst()->CreateTexture(L"DataTargetTex"
-                , vRenderResolotion.x, vRenderResolotion.y
-                , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
-                , D3D11_USAGE_DEFAULT),
-        };
-
-        Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
-
-        m_MRT[(UINT)MRT_TYPE::DEFERRED] = new CMRT;
-        m_MRT[(UINT)MRT_TYPE::DEFERRED]->Create(arrRTTex, DSTex);
-    }
-
 }
 
 void CRenderMgr::render()
@@ -181,7 +125,15 @@ void CRenderMgr::UpdateData()
     }
 
     // 구조화버퍼로 광원 데이터를 옮긴다.
-    m_Light2DBuffer->SetData(m_vecLight2D.data(), sizeof(tLightInfo) * m_vecLight2D.size());
+    static vector<tLightInfo> vecLight2DInfo;
+    vecLight2DInfo.clear();
+
+    for (size_t i = 0; i < m_vecLight2D.size(); ++i)
+    {
+        vecLight2DInfo.push_back(m_vecLight2D[i]->GetLightInfo());
+    }
+
+    m_Light2DBuffer->SetData(vecLight2DInfo.data(), sizeof(tLightInfo) * vecLight2DInfo.size());
     m_Light2DBuffer->UpdateData(12, PIPELINE_STAGE::PS_PIXEL);
 
 
@@ -192,7 +144,15 @@ void CRenderMgr::UpdateData()
     }
 
     // 구조화버퍼로 광원 데이터를 옮긴다.
-    m_Light3DBuffer->SetData(m_vecLight3D.data(), sizeof(tLightInfo) * m_vecLight3D.size());
+    static vector<tLightInfo> vecLight3DInfo;
+    vecLight3DInfo.clear();
+
+    for (size_t i = 0; i < m_vecLight3D.size(); ++i)
+    {
+        vecLight3DInfo.push_back(m_vecLight3D[i]->GetLightInfo());
+    }
+
+    m_Light3DBuffer->SetData(vecLight3DInfo.data(), sizeof(tLightInfo) * vecLight3DInfo.size());
     m_Light3DBuffer->UpdateData(13, PIPELINE_STAGE::PS_PIXEL);
 
 

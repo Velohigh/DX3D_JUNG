@@ -83,7 +83,10 @@ float4 PS_Std3D(VS_OUT _in) : SV_Target
     
     tLightColor lightcolor = (tLightColor) 0.f;
     
-    CalcLight3D(_in.vViewPos, vViewNormal, 0, lightcolor);
+    for (int i = 0; i < g_Light3DCount; ++i)
+    {
+        CalcLight3D(_in.vViewPos, vViewNormal, i, lightcolor);
+    }
         
     // ±¤¿ø Àû¿ë
     vOutColor.xyz = vObjectColor.xyz * lightcolor.vDiffuse.xyz

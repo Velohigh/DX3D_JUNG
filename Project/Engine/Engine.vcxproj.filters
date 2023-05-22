@@ -40,6 +40,9 @@
     <FxCompile Include="std3d_deferred.fx">
       <Filter>05. ShaderCode\02. Render\3D</Filter>
     </FxCompile>
+    <FxCompile Include="light.fx">
+      <Filter>05. ShaderCode\02. Render\3D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEntity.cpp" />
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="CMRT.cpp">
       <Filter>08. MRT</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderMgr_init.cpp">
+      <Filter>02. Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

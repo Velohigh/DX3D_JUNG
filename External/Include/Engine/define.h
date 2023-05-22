@@ -23,6 +23,7 @@ enum class MRT_TYPE
 {
 	SWAPCHAIN,
 	DEFERRED,
+	LIGHT,
 	END,
 };
 
