@@ -14,6 +14,8 @@ private:
     Ptr<CMesh>      m_VolumeMesh;
     Ptr<CMaterial>  m_LightMtrl;
 
+    UINT            m_iLightIdx;
+
 
 public:
     void SetLightType(LIGHT_TYPE _Type);

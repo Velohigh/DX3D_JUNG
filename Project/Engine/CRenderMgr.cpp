@@ -104,11 +104,9 @@ void CRenderMgr::CopyRenderTarget()
 
 void CRenderMgr::MRT_Clear()
 {
-    float arrColor[4] = { 0.2f, 0.2f, 0.2f, 1.f };
-
     for (UINT i = 0; i < (UINT)MRT_TYPE::END; ++i)
     {
-        m_MRT[i]->Clear(arrColor);
+        m_MRT[i]->Clear();
     }
 }
 

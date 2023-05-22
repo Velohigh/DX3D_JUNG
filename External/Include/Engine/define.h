@@ -201,6 +201,9 @@ enum class SHADER_DOMAIN
 	// Deferred
 	DOMAIN_DEFERRED,
 
+	// Light
+	DOMAIN_LIGHT,
+
 	// SwapChain
 	DOMAIN_OPAQUE,		// 불투명 오브젝트
 	DOMAIN_MASK,		// 불투명, 투명

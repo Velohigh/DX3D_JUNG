@@ -58,6 +58,8 @@ public:
 private:
     void clear();
     void render_deferred();
+    void render_merge();
+
     void render_opaque();
     void render_mask();
     void render_transparent();

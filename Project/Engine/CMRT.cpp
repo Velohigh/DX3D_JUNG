@@ -13,7 +13,7 @@ CMRT::~CMRT()
 {
 }
 
-void CMRT::Create(Ptr<CTexture>(&_RTArr)[8], Ptr<CTexture> _DSTex)
+void CMRT::Create(Ptr<CTexture>(&_RTArr)[8], Vec4(&_Clear)[8], Ptr<CTexture> _DSTex)
 {
 	for (UINT i = 0; i < 8; ++i)
 	{
@@ -26,6 +26,8 @@ void CMRT::Create(Ptr<CTexture>(&_RTArr)[8], Ptr<CTexture> _DSTex)
 		m_RT[i] = _RTArr[i];
 	}
 
+	memcpy(m_Clear, _Clear, sizeof(Vec4) * 8);
+
 	m_DSTex = _DSTex;
 }
 
@@ -37,14 +39,17 @@ void CMRT::OMSet()
 		RTView[i] = m_RT[i]->GetRTV().Get();
 	}
 
-	CONTEXT->OMSetRenderTargets(m_RTCount, RTView, m_DSTex->GetDSV().Get());
+	if (nullptr != m_DSTex)
+		CONTEXT->OMSetRenderTargets(m_RTCount, RTView, m_DSTex->GetDSV().Get());
+	else
+		CONTEXT->OMSetRenderTargets(m_RTCount, RTView, nullptr);
 }
 
-void CMRT::Clear(float(&Color)[4])
+void CMRT::Clear()
 {
 	for (UINT i = 0; i < m_RTCount; ++i)
 	{
-		CONTEXT->ClearRenderTargetView(m_RT[i]->GetRTV().Get(), Color);
+		CONTEXT->ClearRenderTargetView(m_RT[i]->GetRTV().Get(), m_Clear[i]);
 	}
 
 	if (nullptr != m_DSTex)

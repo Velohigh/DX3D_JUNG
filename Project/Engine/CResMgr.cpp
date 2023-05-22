@@ -703,6 +703,41 @@ void CResMgr::CreateDefaultGraphicsShader()
 	pShader->AddTexParam(TEX_1, "Noise Texture");
 
 	AddRes(pShader->GetKey(), pShader);
+
+
+	// ============================
+	// Directional Light Shader
+	// RS_TYPE : CULL_NONE
+	// DS_TYPE : NO_TEST_NO_WRITE
+	// BS_TYPE : DEFAULT	 
+	// Domain : DOMAIN_LIGHT
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"DirLightShader");
+	pShader->CreateVertexShader(L"shader\\light.fx", "VS_DirLightShader");
+	pShader->CreatePixelShader(L"shader\\light.fx", "PS_DirLightShader");
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBSType(BS_TYPE::ONE_ONE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+	AddRes(pShader->GetKey(), pShader);
+
+	// ============================
+	// Light Merge Shader
+	// RS_TYPE : CULL_NONE
+	// DS_TYPE : NO_TEST_NO_WRITE
+	// BS_TYPE : DEFAULT	 
+	// Domain : DOMAIN_LIGHT
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"LightMergeShader");
+	pShader->CreateVertexShader(L"shader\\light.fx", "VS_LightMerge");
+	pShader->CreatePixelShader(L"shader\\light.fx", "PS_LightMerge");
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+	AddRes(pShader->GetKey(), pShader);
 }
 
 
@@ -795,6 +830,16 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"DistortionShader"));
 	AddRes(L"DistortionMtrl", pMtrl);
+
+	// DirLightMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"DirLightShader"));
+	AddRes(L"DirLightMtrl", pMtrl);
+
+	// LightMergeMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"LightMergeShader"));
+	AddRes(L"LightMergeMtrl", pMtrl);
 }
 
 Ptr<CTexture> CResMgr::CreateTexture(const wstring& _strKey, UINT _Width, UINT _Height

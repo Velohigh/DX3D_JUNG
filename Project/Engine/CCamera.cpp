@@ -17,6 +17,8 @@
 #include "CMRT.h"
 #include "CLight3D.h"
 
+#include "CResMgr.h"
+
 
 CCamera::CCamera()
 	: CComponent(COMPONENT_TYPE::CAMERA)
@@ -215,7 +217,7 @@ void CCamera::render()
 
 	// (Deferred + Light) Merge
 	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::SWAPCHAIN)->OMSet();
-	//render_merge();
+	render_merge();
 
 
 	// Forward Object	
@@ -247,6 +249,19 @@ void CCamera::render_deferred()
 	{
 		m_vecDeferred[i]->render();
 	}
+}
+
+void CCamera::render_merge()
+{
+	Ptr<CMesh> pMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
+	Ptr<CMaterial> pMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"LightMergeMtrl");
+
+	pMtrl->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"ColorTargetTex"));
+	pMtrl->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"DiffuseTargetTex"));
+	pMtrl->SetTexParam(TEX_2, CResMgr::GetInst()->FindRes<CTexture>(L"SpecularTargetTex"));
+	pMtrl->UpdateData();
+
+	pMesh->render();
 }
 
 void CCamera::render_opaque()

@@ -25,10 +25,11 @@ void CRenderMgr::init()
     // ==================
     {
         Ptr<CTexture> arrRTTex[8] = { CResMgr::GetInst()->FindRes<CTexture>(L"RenderTargetTex"), };
+        Vec4          arrClear[8] = { Vec4(0.2f, 0.2f, 0.2f, 1.f) , };
         Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
 
         m_MRT[(UINT)MRT_TYPE::SWAPCHAIN] = new CMRT;
-        m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Create(arrRTTex, DSTex);
+        m_MRT[(UINT)MRT_TYPE::SWAPCHAIN]->Create(arrRTTex, arrClear, DSTex);
     }
 
     // ============
@@ -59,10 +60,12 @@ void CRenderMgr::init()
                 , D3D11_USAGE_DEFAULT),
         };
 
+        Vec4          arrClear[8] = { Vec4(0.f, 0.f, 0.f, 0.f) , };
+
         Ptr<CTexture> DSTex = CResMgr::GetInst()->FindRes<CTexture>(L"DepthStencilTex");
 
         m_MRT[(UINT)MRT_TYPE::DEFERRED] = new CMRT;
-        m_MRT[(UINT)MRT_TYPE::DEFERRED]->Create(arrRTTex, DSTex);
+        m_MRT[(UINT)MRT_TYPE::DEFERRED]->Create(arrRTTex, arrClear, DSTex);
     }
 
 
@@ -84,7 +87,9 @@ void CRenderMgr::init()
                 , D3D11_USAGE_DEFAULT),
         };
 
+        Vec4          arrClear[8] = { Vec4(0.f, 0.f, 0.f, 0.f) , };
+
         m_MRT[(UINT)MRT_TYPE::LIGHT] = new CMRT;
-        m_MRT[(UINT)MRT_TYPE::LIGHT]->Create(arrRTTex, nullptr);
+        m_MRT[(UINT)MRT_TYPE::LIGHT]->Create(arrRTTex, arrClear, nullptr);
     }
 }
