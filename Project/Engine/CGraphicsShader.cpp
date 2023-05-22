@@ -140,7 +140,7 @@ void CGraphicsShader::UpdateData()
 {
 	CONTEXT->IASetInputLayout(m_Layout.Get());
 	CONTEXT->IASetPrimitiveTopology(m_eTopology);
-		
+
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
 	CONTEXT->HSSetShader(m_HS.Get(), nullptr, 0);
 	CONTEXT->DSSetShader(m_DS.Get(), nullptr, 0);
@@ -148,6 +148,6 @@ void CGraphicsShader::UpdateData()
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
 
 	CONTEXT->RSSetState(CDevice::GetInst()->GetRSState(m_RSType).Get());
-	CONTEXT->OMSetDepthStencilState(CDevice::GetInst()->GetDSState(m_DSType).Get(), 0);
+	CONTEXT->OMSetDepthStencilState(CDevice::GetInst()->GetDSState(m_DSType).Get(), 10);
 	CONTEXT->OMSetBlendState(CDevice::GetInst()->GetBSState(m_BSType).Get(), Vec4(0.f, 0.f, 0.f, 0.f), 0xffffffff);
 }
