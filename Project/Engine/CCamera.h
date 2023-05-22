@@ -12,6 +12,7 @@ private:
     PROJ_TYPE   m_ProjType;
 
     Matrix      m_matView;
+    Matrix      m_matViewInv;
     Matrix      m_matProj;
 
     UINT        m_iLayerMask;

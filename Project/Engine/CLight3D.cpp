@@ -31,7 +31,7 @@ void CLight3D::SetLightType(LIGHT_TYPE _Type)
 	else if (LIGHT_TYPE::POINT == _Type)
 	{
 		m_VolumeMesh = CResMgr::GetInst()->FindRes<CMesh>(L"SphereMesh");
-		//m_LightMtrl = 
+		m_LightMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"PointLightMtrl");
 	}
 
 	else
@@ -45,6 +45,7 @@ void CLight3D::finaltick()
 {
 	m_LightInfo.vWorldPos = Transform()->GetWorldPos();
 	m_LightInfo.vWorldDir = Transform()->GetWorldDir(DIR_TYPE::FRONT);
+	Transform()->SetRelativeScale(Vec3(m_LightInfo.Radius * 2.f, m_LightInfo.Radius * 2.f, m_LightInfo.Radius * 2.f));
 
 	m_iLightIdx = CRenderMgr::GetInst()->RegisterLight3D(this);
 }
@@ -53,9 +54,11 @@ void CLight3D::render()
 {
 	if (nullptr == m_LightMtrl || nullptr == m_VolumeMesh)
 	{
-		assert(nullptr);
+		//assert(nullptr);
 		return;
 	}
+
+	Transform()->UpdateData();
 
 	m_LightMtrl->SetScalarParam(INT_0, &m_iLightIdx);
 	m_LightMtrl->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"PositionTargetTex"));

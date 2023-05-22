@@ -6,7 +6,9 @@
 cbuffer TRANSFORM : register(b0)
 {
     row_major matrix g_matWorld;
+    row_major matrix g_matWorldInv;
     row_major matrix g_matView;
+    row_major matrix g_matViewInv;
     row_major matrix g_matProj;
     
     row_major matrix g_matWV;
@@ -47,17 +49,17 @@ cbuffer MATERIAL : register(b1)
     int g_btex_4;
     int g_btex_5;
     int g_btex_6;
-    int g_btex_7;   
+    int g_btex_7;
 };
 
 cbuffer GLOBAL : register(b2)
 {
     float2 g_Resolution;
-    float  g_DT;
-    float  g_AccTime;
-    uint   g_Light2DCount;
-    uint   g_Light3DCount;
-    int2   g_globalpadding;
+    float g_DT;
+    float g_AccTime;
+    uint g_Light2DCount;
+    uint g_Light3DCount;
+    int2 g_globalpadding;
 }
 
 Texture2D g_tex_0 : register(t0);

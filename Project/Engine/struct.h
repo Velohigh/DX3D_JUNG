@@ -104,7 +104,7 @@ struct tParticle
 };
 
 struct tRWParticleBuffer
-{	
+{
 	int		SpawnCount;			// 스폰 시킬 파티클 개수
 	int		padding[3];
 };
@@ -116,8 +116,8 @@ struct tParticleModule
 	Vec4    vSpawnColor;
 	Vec4	vSpawnScaleMin;
 	Vec4	vSpawnScaleMax;
-	Vec3	vBoxShapeScale;	
-	float	fSphereShapeRadius;	
+	Vec3	vBoxShapeScale;
+	float	fSphereShapeRadius;
 	int		SpawnShapeType;		// 0 : BOX, 1 : Sphere
 	int		SpawnRate;			// 초당 생성 개수
 	int		Space;				// 파티클 업데이트 좌표계 ( 0 : World,  1 : Local)
@@ -140,7 +140,7 @@ struct tParticleModule
 	// Add Velocity 모듈
 	Vec4	vVelocityDir;
 	int     AddVelocityType;	// 0 : From Center, 1: To Center, 2 : Fixed Direction	
-	float	OffsetAngle;		
+	float	OffsetAngle;
 	float	Speed;
 	int     addvpad;
 
@@ -171,7 +171,9 @@ struct tParticleModule
 struct tTransform
 {
 	Matrix matWorld;
+	Matrix matWorldInv;
 	Matrix matView;
+	Matrix matViewInv;
 	Matrix matProj;
 
 	Matrix matWV;

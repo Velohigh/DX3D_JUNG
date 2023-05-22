@@ -723,6 +723,23 @@ void CResMgr::CreateDefaultGraphicsShader()
 	AddRes(pShader->GetKey(), pShader);
 
 	// ============================
+	// Point Light Shader
+	// RS_TYPE : CULL_NONE
+	// DS_TYPE : NO_TEST_NO_WRITE
+	// BS_TYPE : DEFAULT	 
+	// Domain : DOMAIN_LIGHT
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"PointLightShader");
+	pShader->CreateVertexShader(L"shader\\light.fx", "VS_PointLightShader");
+	pShader->CreatePixelShader(L"shader\\light.fx", "PS_PointLightShader");
+	pShader->SetRSType(RS_TYPE::CULL_FRONT);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBSType(BS_TYPE::ONE_ONE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+	AddRes(pShader->GetKey(), pShader);
+
+	// ============================
 	// Light Merge Shader
 	// RS_TYPE : CULL_NONE
 	// DS_TYPE : NO_TEST_NO_WRITE
@@ -836,10 +853,17 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"DirLightShader"));
 	AddRes(L"DirLightMtrl", pMtrl);
 
+	// PointLightMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"PointLightShader"));
+	AddRes(L"PointLightMtrl", pMtrl);
+
 	// LightMergeMtrl
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"LightMergeShader"));
 	AddRes(L"LightMergeMtrl", pMtrl);
+
+
 }
 
 Ptr<CTexture> CResMgr::CreateTexture(const wstring& _strKey, UINT _Width, UINT _Height

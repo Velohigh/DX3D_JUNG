@@ -87,6 +87,7 @@ void CCamera::CalcViewMat()
 	matViewRot._31 = vR.z;	matViewRot._32 = vU.z;	matViewRot._33 = vF.z;
 
 	m_matView = matViewTrans * matViewRot;
+	m_matViewInv = XMMatrixInverse(nullptr, m_matView);
 }
 
 void CCamera::CalcProjMat()
@@ -196,6 +197,7 @@ void CCamera::render()
 {
 	// 행렬 업데이트
 	g_transform.matView = m_matView;
+	g_transform.matViewInv = m_matViewInv;
 	g_transform.matProj = m_matProj;
 
 	// =====================================
