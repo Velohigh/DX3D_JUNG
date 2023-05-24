@@ -38,6 +38,18 @@ void CEditorObjMgr::init()
 	m_DebugShape[(UINT)SHAPE_TYPE::CIRCLE]->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"CircleMesh_Debug"));
 	m_DebugShape[(UINT)SHAPE_TYPE::CIRCLE]->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DebugShapeMtrl"));
 
+	m_DebugShape[(UINT)SHAPE_TYPE::CUBE] = new CGameObjectEx;
+	m_DebugShape[(UINT)SHAPE_TYPE::CUBE]->AddComponent(new CTransform);
+	m_DebugShape[(UINT)SHAPE_TYPE::CUBE]->AddComponent(new CMeshRender);
+	m_DebugShape[(UINT)SHAPE_TYPE::CUBE]->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"CubeMesh"));
+	m_DebugShape[(UINT)SHAPE_TYPE::CUBE]->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DebugShapeMtrl"));
+
+	m_DebugShape[(UINT)SHAPE_TYPE::SPHERE] = new CGameObjectEx;
+	m_DebugShape[(UINT)SHAPE_TYPE::SPHERE]->AddComponent(new CTransform);
+	m_DebugShape[(UINT)SHAPE_TYPE::SPHERE]->AddComponent(new CMeshRender);
+	m_DebugShape[(UINT)SHAPE_TYPE::SPHERE]->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"SphereMesh"));
+	m_DebugShape[(UINT)SHAPE_TYPE::SPHERE]->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DebugShapeMtrl"));
+
 	// EditorObject »ý¼º
 	CGameObjectEx* pEditorCamObj = new CGameObjectEx;
 	pEditorCamObj->AddComponent(new CTransform);
@@ -88,8 +100,6 @@ void CEditorObjMgr::render()
 		m_vecEditorObj[i]->render();
 	}
 
-
-
 	// DebugShape Render
 	CGameObjectEx* pShapeObj = nullptr;
 
@@ -105,8 +115,10 @@ void CEditorObjMgr::render()
 			pShapeObj = m_DebugShape[(UINT)SHAPE_TYPE::CIRCLE];
 			break;
 		case SHAPE_TYPE::CUBE:
+			pShapeObj = m_DebugShape[(UINT)SHAPE_TYPE::CUBE];
 			break;
 		case SHAPE_TYPE::SPHERE:
+			pShapeObj = m_DebugShape[(UINT)SHAPE_TYPE::SPHERE];
 			break;
 		}
 

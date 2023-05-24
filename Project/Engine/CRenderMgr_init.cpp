@@ -58,6 +58,11 @@ void CRenderMgr::init()
                 , vRenderResolotion.x, vRenderResolotion.y
                 , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
                 , D3D11_USAGE_DEFAULT),
+
+            CResMgr::GetInst()->CreateTexture(L"EmissiveTargetTex"
+                , vRenderResolotion.x, vRenderResolotion.y
+                , DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE
+                , D3D11_USAGE_DEFAULT),
         };
 
         Vec4          arrClear[8] = { Vec4(0.f, 0.f, 0.f, 0.f) , };

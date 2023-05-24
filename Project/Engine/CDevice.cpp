@@ -226,7 +226,6 @@ int CDevice::CreateDepthStencilState()
     Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
     DEVICE->CreateDepthStencilState(&Desc, m_DSState[(UINT)DS_TYPE::NO_TEST_NO_WRITE].GetAddressOf());
 
-
     // 
     {
         D3D11_DEPTH_STENCIL_DESC Desc = {};
@@ -268,8 +267,6 @@ int CDevice::CreateDepthStencilState()
 
         //DEVICE->CreateDepthStencilState(&Desc, m_DSState[(UINT)DS_TYPE::BACK_CHECK].GetAddressOf());
     }
-
-
 
     {
         D3D11_DEPTH_STENCIL_DESC Desc = {};

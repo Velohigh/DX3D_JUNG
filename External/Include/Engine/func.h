@@ -18,8 +18,16 @@ void DrawDebugRect(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
 void DrawDebugCircle(Vec3 _vWorldPos, float _fRadius, Vec4 _vColor, Vec3 _vRotation, float _fTime = 0.f);
 void DrawDebugCircle(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
 
-// void DrawDebugSphere();
-// void DrawDebugCube();
+void DrawDebugCube(Vec3 _vWorldPos, Vec2 _vWorldScale, Vec4 _vColor, Vec3 _vRotation, float _fTime = 0.f);
+void DrawDebugCube(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
+
+void DrawDebugSphere(Vec3 _vWorldPos, float _fRadius, Vec4 _vColor, Vec3 _vRotation, float _fTime = 0.f);
+void DrawDebugSphere(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
+
+
+
+
+
 
 
 const char* ToString(RES_TYPE);
@@ -43,9 +51,9 @@ class CResMgr;
 template<typename T>
 void LoadResRef(Ptr<T>& _Res, FILE* _File)
 {
-	int i = 0;	
+	int i = 0;
 	fread(&i, sizeof(i), 1, _File);
-	
+
 	if (i)
 	{
 		wstring strKey, strRelativePath;
@@ -71,7 +79,7 @@ void Safe_Del_Array(T* (&arr)[Size])
 	{
 		if (nullptr != arr[i])
 			delete arr[i];
-	}	
+	}
 }
 
 template<typename T>

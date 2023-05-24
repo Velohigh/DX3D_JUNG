@@ -43,6 +43,9 @@
     <FxCompile Include="light.fx">
       <Filter>05. ShaderCode\02. Render\3D</Filter>
     </FxCompile>
+    <FxCompile Include="decal.fx">
+      <Filter>05. ShaderCode\02. Render\3D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEntity.cpp" />
@@ -110,9 +113,6 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>02. Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CRenderMgr.cpp">
-      <Filter>02. Manager</Filter>
-    </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
       <Filter>02. Manager</Filter>
     </ClCompile>
@@ -127,9 +127,6 @@
     </ClCompile>
     <ClCompile Include="CShader.cpp">
       <Filter>04. Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="CResMgr.cpp">
-      <Filter>02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CLight3D.cpp">
       <Filter>03. CGameObject\Component</Filter>
@@ -182,8 +179,17 @@
     <ClCompile Include="CMRT.cpp">
       <Filter>08. MRT</Filter>
     </ClCompile>
+    <ClCompile Include="CRenderMgr.cpp">
+      <Filter>02. Manager\RenderMgr</Filter>
+    </ClCompile>
     <ClCompile Include="CRenderMgr_init.cpp">
-      <Filter>02. Manager</Filter>
+      <Filter>02. Manager\RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CResMgr.cpp">
+      <Filter>02. Manager\ResMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CDecal.cpp">
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +260,6 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>02. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CRenderMgr.h">
-      <Filter>02. Manager</Filter>
-    </ClInclude>
     <ClInclude Include="CPathMgr.h">
       <Filter>02. Manager</Filter>
     </ClInclude>
@@ -292,9 +295,6 @@
     </ClInclude>
     <ClInclude Include="ptr.h">
       <Filter>01. header</Filter>
-    </ClInclude>
-    <ClInclude Include="CResMgr.h">
-      <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CLight3D.h">
       <Filter>03. CGameObject\Component</Filter>
@@ -343,6 +343,15 @@
     </ClInclude>
     <ClInclude Include="CMRT.h">
       <Filter>08. MRT</Filter>
+    </ClInclude>
+    <ClInclude Include="CRenderMgr.h">
+      <Filter>02. Manager\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CResMgr.h">
+      <Filter>02. Manager\ResMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CDecal.h">
+      <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -393,6 +402,12 @@
     </Filter>
     <Filter Include="06. Level">
       <UniqueIdentifier>{9b585ac4-9db7-4b4e-979d-11c6ea0bce84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\RenderMgr">
+      <UniqueIdentifier>{f5a6e161-b194-41bb-a928-ffaba503f9e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\ResMgr">
+      <UniqueIdentifier>{5f0024be-9970-4309-91dd-545e60fae478}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

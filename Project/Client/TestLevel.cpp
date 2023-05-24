@@ -130,6 +130,20 @@ void CreateTestLevel()
 
 	SpawnGameObject(pObject, Vec3(0.f, 0.f, 0.f), 0);*/
 
+
+	// Decal Object
+	pObject = new CGameObject;
+	pObject->SetName(L"Decal");
+	pObject->AddComponent(new CTransform);
+	pObject->AddComponent(new CDecal);
+
+	pObject->Transform()->SetRelativeScale(Vec3(200.f, 200.f, 200.f));
+
+	SpawnGameObject(pObject, Vec3(0.f, 0.f, 0.f), 0);
+
+
+
+
 	// 충돌 시킬 레이어 짝 지정
 	CCollisionMgr::GetInst()->LayerCheck(L"Player", L"Monster");
 }
