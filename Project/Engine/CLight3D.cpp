@@ -26,18 +26,21 @@ void CLight3D::SetLightType(LIGHT_TYPE _Type)
 	{
 		m_VolumeMesh = CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh");
 		m_LightMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"DirLightMtrl");
+		m_LightType = LIGHT_TYPE::DIRECTIONAL;
 	}
 
 	else if (LIGHT_TYPE::POINT == _Type)
 	{
 		m_VolumeMesh = CResMgr::GetInst()->FindRes<CMesh>(L"SphereMesh");
 		m_LightMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"PointLightMtrl");
+		m_LightType = LIGHT_TYPE::POINT;
 	}
 
 	else
 	{
 		m_VolumeMesh = CResMgr::GetInst()->FindRes<CMesh>(L"ConeMesh");
 		m_LightMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"SpotLightMtrl");
+		m_LightType = LIGHT_TYPE::SPOT;
 	}
 }
 

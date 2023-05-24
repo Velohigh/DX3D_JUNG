@@ -54,12 +54,15 @@ void CreateTestLevel()
 	pLightObj->SetName(L"Spot Light");
 
 	pLightObj->AddComponent(new CTransform);
+	pLightObj->AddComponent(new CMeshRender);
 	pLightObj->AddComponent(new CLight3D);
 
 	pLightObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
-	//pLightObj->Transform()->SetRelativeRot(Vec3(XM_PI / 7.f, -XM_PI / 2.f, 0.f));
 	pLightObj->Transform()->SetRelativeRot(Vec3(0.f, 0.f, 0.f));
 	//pLightObj->Transform()->SetRelativeScale(Vec3(300.f, 800.f, 300.f));
+
+	pLightObj->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"ConeMesh"));
+	pLightObj->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std3D_Deferred_WireMtrl"));
 
 	pLightObj->Light3D()->SetLightType(LIGHT_TYPE::SPOT);
 
@@ -67,7 +70,7 @@ void CreateTestLevel()
 	//pLightObj->Light3D()->SetLightSpecular(Vec3(0.3f, 0.3f, 0.3f));
 	//pLightObj->Light3D()->SetLightAmbient(Vec3(0.1f, 0.1f, 0.1f));	
 
-	pLightObj->Light3D()->SetRadius(1000.f);
+	pLightObj->Light3D()->SetRadius(750.f);
 
 	SpawnGameObject(pLightObj, Vec3(0.f, 500.f, 0.f), 0);
 

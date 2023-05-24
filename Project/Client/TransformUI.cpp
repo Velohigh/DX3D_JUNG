@@ -42,5 +42,24 @@ int TransformUI::render_update()
 	vRotation = (vRotation / 180.f) * XM_PI;
 	GetTarget()->Transform()->SetRelativeRot(vRotation);
 
+	if (nullptr != GetTarget())
+	{
+		if (GetTarget()->Transform()->GetAbsolute() != m_bAbsoluteCheck)
+			m_bAbsoluteCheck = GetTarget()->Transform()->GetAbsolute();
+
+		ImGui::Checkbox("##AnimationEditCheckBox", &m_bAbsoluteCheck);
+		ImGui::SameLine();
+		ImGui::Text("Absolute");
+		if (m_bAbsoluteCheck)
+		{
+			GetTarget()->Transform()->SetAbsolute(true);
+		}
+		else if (!m_bAbsoluteCheck)
+		{
+			GetTarget()->Transform()->SetAbsolute(false);
+
+		}
+	}
+
 	return TRUE;
 }

@@ -15,6 +15,7 @@ private:
     Ptr<CMaterial>  m_LightMtrl;
 
     UINT            m_iLightIdx;
+    LIGHT_TYPE      m_LightType;
 
 
 public:
@@ -25,6 +26,11 @@ public:
     void SetLightAmbient(Vec3 _vAmbient) { m_LightInfo.Color.vAmbient = _vAmbient; }
     void SetRadius(float _Radius) { m_LightInfo.Radius = _Radius; }
     void SetAngle(float _Angle) { m_LightInfo.Angle = _Angle; }
+
+    const float& GetRadius() { return m_LightInfo.Radius; }
+
+
+    const LIGHT_TYPE& GetLightType() { return m_LightType; }
 
     const tLightInfo& GetLightInfo() { return m_LightInfo; }
 

@@ -5,6 +5,8 @@
 class Light3DUI :
     public ComponentUI
 {
+private:
+    bool    m_DebugShapeOn;
 
 public:
     virtual int render_update() override;
