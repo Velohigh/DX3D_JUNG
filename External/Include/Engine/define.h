@@ -166,6 +166,9 @@ enum class DS_TYPE
 	GREATER_EQUAL,
 	NO_WRITE,			// LESS, DepthWrite X
 	NO_TEST_NO_WRITE,	// Test X, DepthWrite X
+
+	FRONT_CHECK,
+
 	END,
 };
 

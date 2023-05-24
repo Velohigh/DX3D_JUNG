@@ -94,7 +94,15 @@ void CalcLight3D(float3 _vViewPos, float3 _vViewNormal, uint _LightIdx, inout tL
     // SpotLight
     else
     {
+        // Light 의 ViewSpace 에서의 방향
+        float4 vLightViewPos = mul(float4(lightinfo.vWorldPos.xyz, 1.f), g_matView);
+       
+        // 표면위치 - 광원 위치
+        vLightDir = normalize(_vViewPos - vLightViewPos.xyz);
         
+        // 거리에 따른 세기 변화
+        float fDist = distance(_vViewPos, vLightViewPos.xyz);
+        fDistPow = 1.f - saturate(fDist / lightinfo.Radius);
     }
     
     // Diffuse Power

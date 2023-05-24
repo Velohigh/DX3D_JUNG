@@ -37,7 +37,7 @@ void CLight3D::SetLightType(LIGHT_TYPE _Type)
 	else
 	{
 		m_VolumeMesh = CResMgr::GetInst()->FindRes<CMesh>(L"ConeMesh");
-		//m_LightMtrl = 
+		m_LightMtrl = CResMgr::GetInst()->FindRes<CMaterial>(L"SpotLightMtrl");
 	}
 }
 

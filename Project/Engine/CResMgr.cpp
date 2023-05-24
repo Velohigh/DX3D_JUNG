@@ -448,6 +448,106 @@ void CResMgr::CreateDefaultMesh()
 	vecVtx.clear();
 	vecIdx.clear();
 
+	// ===============
+	// Cone Mesh
+	// ===============
+	fRadius = 0.5f; // 콘의 밑면 반지름
+	float fHeight = 1.0f; // 콘의 높이
+
+	// Top (콘의 꼭대기)
+	v.vPos = Vec3(0.f, fHeight, 0.f);
+	v.vUV = Vec2(0.5f, 0.f);
+	v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	v.vNormal = Vec3(0.f, 1.f, 0.f); // 꼭대기 방향으로 노멀
+	v.vTangent = Vec3(1.f, 0.f, 0.f); // 임의의 텐저트 벡터
+	v.vBinormal = Vec3(0.f, 0.f, -1.f); // 임의의 바이노멀 벡터
+	vecVtx.push_back(v);
+
+	// Body (콘의 옆면)
+	UINT iSegmentCount = 40; // 콘의 세그먼트 개수
+
+	float fHeightStep = fHeight / iSegmentCount;
+	float fRadiusStep = fRadius / iSegmentCount;
+	fUVYStep = 1.f / iSegmentCount;
+
+	for (UINT i = 0; i < iSegmentCount; ++i)
+	{
+		float fCurrentHeight = fHeight - (i * fHeightStep);
+		float fCurrentRadius = fRadius - (i * fRadiusStep);
+		float fCurrentUVY = fUVYStep * i;
+
+		for (UINT j = 0; j <= iSliceCount; ++j)
+		{
+			float theta = j * fSliceAngle;
+
+			v.vPos = Vec3(fCurrentRadius * cosf(theta), fCurrentHeight, fCurrentRadius * sinf(theta));
+			v.vUV = Vec2(fUVXStep * j, fCurrentUVY);
+			v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+
+			// Normal 벡터는 옆면의 법선벡터로 설정합니다.
+			v.vNormal = Vec3(fCurrentRadius * cosf(theta), 0.f, fCurrentRadius * sinf(theta));
+			v.vNormal.Normalize();
+
+			// 임의의 텐저트 및 바이노멀 벡터를 설정합니다.
+			v.vTangent.x = -fCurrentRadius * sinf(theta);
+			v.vTangent.y = 0.f;
+			v.vTangent.z = fCurrentRadius * cosf(theta);
+			v.vTangent.Normalize();
+
+			v.vTangent.Cross(v.vNormal, v.vBinormal);
+			v.vBinormal.Normalize();
+
+			vecVtx.push_back(v);
+		}
+	}
+
+	// Bottom (콘의 밑면)
+	v.vPos = Vec3(0.f, 0.f, 0.f);
+	v.vUV = Vec2(0.5f, 1.f);
+	v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	v.vNormal = Vec3(0.f, -1.f, 0.f); // 아래 방향으로 노멀
+	v.vTangent = Vec3(1.f, 0.f, 0.f); // 임의의 텐저트 벡터
+	v.vBinormal = Vec3(0.f, 0.f, -1.f); // 임의의 바이노멀 벡터
+	vecVtx.push_back(v);
+
+	// 인덱스
+	// 상단 원
+	for (UINT i = 0; i < iSliceCount; ++i)
+	{
+		vecIdx.push_back(0);
+		vecIdx.push_back(i + 2);
+		vecIdx.push_back(i + 1);
+	}
+
+	// 측면
+	for (UINT i = 0; i < iSegmentCount - 1; ++i)
+	{
+		for (UINT j = 0; j < iSliceCount; ++j)
+		{
+			vecIdx.push_back((iSliceCount + 1) * (i)+(j)+1);
+			vecIdx.push_back((iSliceCount + 1) * (i + 1) + (j + 1) + 1);
+			vecIdx.push_back((iSliceCount + 1) * (i + 1) + (j)+1);
+
+			vecIdx.push_back((iSliceCount + 1) * (i)+(j)+1);
+			vecIdx.push_back((iSliceCount + 1) * (i)+(j + 1) + 1);
+			vecIdx.push_back((iSliceCount + 1) * (i + 1) + (j + 1) + 1);
+		}
+	}
+
+	// 하단 원
+	iBottomIdx = (UINT)vecVtx.size() - 1;
+	for (UINT i = 0; i < iSliceCount; ++i)
+	{
+		vecIdx.push_back(iBottomIdx);
+		vecIdx.push_back(iBottomIdx - (i + 2));
+		vecIdx.push_back(iBottomIdx - (i + 1));
+	}
+
+	pMesh = new CMesh(true);
+	pMesh->Create(vecVtx.data(), vecVtx.size(), vecIdx.data(), vecIdx.size());
+	AddRes<CMesh>(L"ConeMesh", pMesh);
+	vecVtx.clear();
+	vecIdx.clear();
 
 }
 
@@ -740,6 +840,24 @@ void CResMgr::CreateDefaultGraphicsShader()
 	AddRes(pShader->GetKey(), pShader);
 
 	// ============================
+	// Spot Light Shader
+	// RS_TYPE : CULL_NONE
+	// DS_TYPE : NO_TEST_NO_WRITE
+	// BS_TYPE : DEFAULT	 
+	// Domain : DOMAIN_LIGHT
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"SpotLightShader");
+	pShader->CreateVertexShader(L"shader\\light.fx", "VS_SpotLightShader");
+	pShader->CreatePixelShader(L"shader\\light.fx", "PS_SpotLightShader");
+	pShader->SetRSType(RS_TYPE::CULL_FRONT);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBSType(BS_TYPE::ONE_ONE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+	AddRes(pShader->GetKey(), pShader);
+
+
+	// ============================
 	// Light Merge Shader
 	// RS_TYPE : CULL_NONE
 	// DS_TYPE : NO_TEST_NO_WRITE
@@ -857,6 +975,12 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"PointLightShader"));
 	AddRes(L"PointLightMtrl", pMtrl);
+
+	// SpotLightMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"SpotLightShader"));
+	AddRes(L"SpotLightMtrl", pMtrl);
+
 
 	// LightMergeMtrl
 	pMtrl = new CMaterial(true);

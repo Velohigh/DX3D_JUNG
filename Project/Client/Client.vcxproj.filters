@@ -50,12 +50,6 @@
     <Filter Include="UI\InspectorUI\ComponentUI\06. Light2DUI">
       <UniqueIdentifier>{583b0be2-1553-4dd0-8f1b-69412f08018c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\InspectorUI\ComponentUI\07. TileMapUI">
-      <UniqueIdentifier>{caed5036-51a6-436d-8160-b418bbf2856c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\InspectorUI\ComponentUI\08. ParticleSystemUI">
-      <UniqueIdentifier>{26ea688e-f2d8-4f3f-85e5-e9909a31dacf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI\ContentUI">
       <UniqueIdentifier>{6ff1df0b-768c-4425-88dd-d62587ca58fd}</UniqueIdentifier>
     </Filter>
@@ -104,11 +98,20 @@
     <Filter Include="UI\MenuUI">
       <UniqueIdentifier>{47afa2ee-3e6f-4c48-b177-46a3b2927bde}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\InspectorUI\ComponentUI\09. ScriptUI">
-      <UniqueIdentifier>{662a78f7-bbf9-46d2-a9e0-cd5e1ed84873}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\LevelSaveLoad">
       <UniqueIdentifier>{bd45bcb0-5b2d-4b83-a548-af8817de8f6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\InspectorUI\ComponentUI\08. TileMapUI">
+      <UniqueIdentifier>{caed5036-51a6-436d-8160-b418bbf2856c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\InspectorUI\ComponentUI\09. ParticleSystemUI">
+      <UniqueIdentifier>{26ea688e-f2d8-4f3f-85e5-e9909a31dacf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\InspectorUI\ComponentUI\10. ScriptUI">
+      <UniqueIdentifier>{662a78f7-bbf9-46d2-a9e0-cd5e1ed84873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\InspectorUI\ComponentUI\07. Light3DUI">
+      <UniqueIdentifier>{a0f59eff-a564-4895-93e4-6bef328760a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +182,7 @@
       <Filter>UI\InspectorUI\ComponentUI\06. Light2DUI</Filter>
     </ClInclude>
     <ClInclude Include="TileMapUI.h">
-      <Filter>UI\InspectorUI\ComponentUI\07. TileMapUI</Filter>
+      <Filter>UI\InspectorUI\ComponentUI\08. TileMapUI</Filter>
     </ClInclude>
     <ClInclude Include="ListUI.h">
       <Filter>UI\Module\ListUI</Filter>
@@ -228,10 +231,13 @@
       <Filter>UI\MenuUI</Filter>
     </ClInclude>
     <ClInclude Include="ScriptUI.h">
-      <Filter>UI\InspectorUI\ComponentUI\09. ScriptUI</Filter>
+      <Filter>UI\InspectorUI\ComponentUI\10. ScriptUI</Filter>
     </ClInclude>
     <ClInclude Include="CLevelSaveLoad.h">
       <Filter>Manager\LevelSaveLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="Light3DUI.h">
+      <Filter>UI\InspectorUI\ComponentUI\07. Light3DUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -309,7 +315,7 @@
       <Filter>UI\InspectorUI\ComponentUI\06. Light2DUI</Filter>
     </ClCompile>
     <ClCompile Include="TileMapUI.cpp">
-      <Filter>UI\InspectorUI\ComponentUI\07. TileMapUI</Filter>
+      <Filter>UI\InspectorUI\ComponentUI\08. TileMapUI</Filter>
     </ClCompile>
     <ClCompile Include="ListUI.cpp">
       <Filter>UI\Module\ListUI</Filter>
@@ -359,10 +365,13 @@
       <Filter>UI\MenuUI</Filter>
     </ClCompile>
     <ClCompile Include="ScriptUI.cpp">
-      <Filter>UI\InspectorUI\ComponentUI\09. ScriptUI</Filter>
+      <Filter>UI\InspectorUI\ComponentUI\10. ScriptUI</Filter>
     </ClCompile>
     <ClCompile Include="CLevelSaveLoad.cpp">
       <Filter>Manager\LevelSaveLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="Light3DUI.cpp">
+      <Filter>UI\InspectorUI\ComponentUI\07. Light3DUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
