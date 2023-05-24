@@ -143,7 +143,17 @@ PS_OUT PS_SpotLightShader(VS_OUT _in)
     float3 vWorldPos = mul(float4(vViewPos, 1.f), g_matViewInv);
     float3 vLocalPos = mul(float4(vWorldPos, 1.f), g_matWorldInv);
     
-    if (vLocalPos.y <= 1.f && vLocalPos.y >= 0.f)
+    // 광원 정보
+    tLightInfo lightinfo = g_Light3DBuffer[g_int_0];
+    
+    // 광원의 로컬스페이스 상에서 내부 영역에 있는지 확인하기 위한 Angle값
+    float fLightLocalAngle = dot(float3(0.f, -1.f, 0.f), normalize(float3(0.5f, -1.f, 0.f)));
+    
+    // 광원 내부 영역에서, LocalPos와 광원방향을 내적한 값이, 광원 Top과 Bottom 꼭지점 내적한 값보다 작다면, 내부에 있다는 뜻
+    float fdotLocalPos = dot(normalize(vLocalPos.xyz), float3(0.f, -1.f, 0.f));
+    
+    if (vLocalPos.y <= 0.f && vLocalPos.y >= -1.f
+        && fdotLocalPos >= fLightLocalAngle)
     {   
         tLightColor lightcolor = (tLightColor) 0.f;
         float3 vViewNormal = g_tex_1.Sample(g_sam_0, vUV).xyz;

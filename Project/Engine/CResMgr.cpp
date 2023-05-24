@@ -452,8 +452,8 @@ void CResMgr::CreateDefaultMesh()
 		// =========
 		// Cone Mesh
 		// =========
-		float fRadius = 0.5f;
-		float fHeight = 1.0f;
+		float fRadius = 0.5f;  // 원바닥의 반지름
+		float fHeight = 1.0f;	// Cone의 Top과 Bottom 사이의 거리
 		UINT iSliceCount = 40; // 세로 분할 개수
 
 		float fSliceAngle = XM_2PI / iSliceCount;

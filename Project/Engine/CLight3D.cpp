@@ -48,7 +48,15 @@ void CLight3D::finaltick()
 {
 	m_LightInfo.vWorldPos = Transform()->GetWorldPos();
 	m_LightInfo.vWorldDir = Transform()->GetWorldDir(DIR_TYPE::FRONT);
-	Transform()->SetRelativeScale(Vec3(m_LightInfo.Radius * 2.f, m_LightInfo.Radius * 2.f, m_LightInfo.Radius * 2.f));
+
+	if (m_LightType == LIGHT_TYPE::POINT)
+	{
+		Transform()->SetRelativeScale(Vec3(m_LightInfo.Radius * 2.f, m_LightInfo.Radius * 2.f, m_LightInfo.Radius * 2.f));
+	}
+	else if (m_LightType == LIGHT_TYPE::SPOT)
+	{
+		Transform()->SetRelativeScale(Vec3(m_LightInfo.Radius, m_LightInfo.Radius, m_LightInfo.Radius));
+	}
 
 	m_iLightIdx = CRenderMgr::GetInst()->RegisterLight3D(this);
 }
