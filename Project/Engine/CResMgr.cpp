@@ -448,107 +448,81 @@ void CResMgr::CreateDefaultMesh()
 	vecVtx.clear();
 	vecIdx.clear();
 
-	// ===============
-	// Cone Mesh
-	// ===============
-	fRadius = 0.5f; // 콘의 밑면 반지름
-	float fHeight = 1.0f; // 콘의 높이
-
-	// Top (콘의 꼭대기)
-	v.vPos = Vec3(0.f, fHeight, 0.f);
-	v.vUV = Vec2(0.5f, 0.f);
-	v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
-	v.vNormal = Vec3(0.f, 1.f, 0.f); // 꼭대기 방향으로 노멀
-	v.vTangent = Vec3(1.f, 0.f, 0.f); // 임의의 텐저트 벡터
-	v.vBinormal = Vec3(0.f, 0.f, -1.f); // 임의의 바이노멀 벡터
-	vecVtx.push_back(v);
-
-	// Body (콘의 옆면)
-	UINT iSegmentCount = 40; // 콘의 세그먼트 개수
-
-	float fHeightStep = fHeight / iSegmentCount;
-	float fRadiusStep = fRadius / iSegmentCount;
-	fUVYStep = 1.f / iSegmentCount;
-
-	for (UINT i = 0; i < iSegmentCount; ++i)
 	{
-		float fCurrentHeight = fHeight - (i * fHeightStep);
-		float fCurrentRadius = fRadius - (i * fRadiusStep);
-		float fCurrentUVY = fUVYStep * i;
+		// =========
+		// Cone Mesh
+		// =========
+		float fRadius = 0.5f;
+		float fHeight = 1.0f;
+		UINT iSliceCount = 40; // 세로 분할 개수
 
-		for (UINT j = 0; j <= iSliceCount; ++j)
+		float fSliceAngle = XM_2PI / iSliceCount;
+		float fUVXStep = 1.f / (float)iSliceCount;
+
+		// Top (apex of the cone)
+		v.vPos = Vec3(0.f, 0.f, 0.f);  // Now at origin
+		v.vUV = Vec2(0.5f, 0.f);
+		v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+		v.vNormal = v.vPos;
+		v.vNormal.Normalize();
+		vecVtx.push_back(v);
+
+		// Body
+		for (UINT i = 0; i <= iSliceCount; ++i)
 		{
-			float theta = j * fSliceAngle;
+			float theta = i * fSliceAngle;
 
-			v.vPos = Vec3(fCurrentRadius * cosf(theta), fCurrentHeight, fCurrentRadius * sinf(theta));
-			v.vUV = Vec2(fUVXStep * j, fCurrentUVY);
+			v.vPos = Vec3(fRadius * cosf(theta), -fHeight, fRadius * sinf(theta)); // Subtract height
+			v.vUV = Vec2(fUVXStep * i, 1.f);
 			v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
-
-			// Normal 벡터는 옆면의 법선벡터로 설정합니다.
-			v.vNormal = Vec3(fCurrentRadius * cosf(theta), 0.f, fCurrentRadius * sinf(theta));
+			v.vNormal = v.vPos;
+			v.vNormal.y += fHeight; // Add height back for correct normals
 			v.vNormal.Normalize();
-
-			// 임의의 텐저트 및 바이노멀 벡터를 설정합니다.
-			v.vTangent.x = -fCurrentRadius * sinf(theta);
-			v.vTangent.y = 0.f;
-			v.vTangent.z = fCurrentRadius * cosf(theta);
-			v.vTangent.Normalize();
-
-			v.vTangent.Cross(v.vNormal, v.vBinormal);
-			v.vBinormal.Normalize();
 
 			vecVtx.push_back(v);
 		}
-	}
 
-	// Bottom (콘의 밑면)
-	v.vPos = Vec3(0.f, 0.f, 0.f);
-	v.vUV = Vec2(0.5f, 1.f);
-	v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
-	v.vNormal = Vec3(0.f, -1.f, 0.f); // 아래 방향으로 노멀
-	v.vTangent = Vec3(1.f, 0.f, 0.f); // 임의의 텐저트 벡터
-	v.vBinormal = Vec3(0.f, 0.f, -1.f); // 임의의 바이노멀 벡터
-	vecVtx.push_back(v);
+		// Bottom center
+		v.vPos = Vec3(0.f, -fHeight, 0.f); // Subtract height
+		v.vUV = Vec2(0.5f, 1.f);
+		v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+		v.vNormal = Vec3(0.f, -1.f, 0.f); // normal is down for bottom
+		vecVtx.push_back(v);
 
-	// 인덱스
-	// 상단 원
-	for (UINT i = 0; i < iSliceCount; ++i)
-	{
-		vecIdx.push_back(0);
-		vecIdx.push_back(i + 2);
-		vecIdx.push_back(i + 1);
-	}
-
-	// 측면
-	for (UINT i = 0; i < iSegmentCount - 1; ++i)
-	{
-		for (UINT j = 0; j < iSliceCount; ++j)
+		// Indices
+		// Body
+		for (UINT i = 1; i < iSliceCount; ++i)
 		{
-			vecIdx.push_back((iSliceCount + 1) * (i)+(j)+1);
-			vecIdx.push_back((iSliceCount + 1) * (i + 1) + (j + 1) + 1);
-			vecIdx.push_back((iSliceCount + 1) * (i + 1) + (j)+1);
-
-			vecIdx.push_back((iSliceCount + 1) * (i)+(j)+1);
-			vecIdx.push_back((iSliceCount + 1) * (i)+(j + 1) + 1);
-			vecIdx.push_back((iSliceCount + 1) * (i + 1) + (j + 1) + 1);
+			vecIdx.push_back(0);
+			vecIdx.push_back(i + 1);
+			vecIdx.push_back(i);
 		}
+
+		// close the loop for body
+		vecIdx.push_back(0);
+		vecIdx.push_back(1);
+		vecIdx.push_back(iSliceCount);
+
+		// Bottom
+		UINT iBottomCenterIndex = vecVtx.size() - 1;
+		for (UINT i = 1; i < iSliceCount; ++i)
+		{
+			vecIdx.push_back(iBottomCenterIndex);
+			vecIdx.push_back(i);
+			vecIdx.push_back(i + 1);
+		}
+
+		// close the loop for bottom
+		vecIdx.push_back(iBottomCenterIndex);
+		vecIdx.push_back(iSliceCount);
+		vecIdx.push_back(1);
+
+		pMesh = new CMesh(true);
+		pMesh->Create(vecVtx.data(), vecVtx.size(), vecIdx.data(), vecIdx.size());
+		AddRes<CMesh>(L"ConeMesh", pMesh);
+		vecVtx.clear();
+		vecIdx.clear();
 	}
-
-	// 하단 원
-	iBottomIdx = (UINT)vecVtx.size() - 1;
-	for (UINT i = 0; i < iSliceCount; ++i)
-	{
-		vecIdx.push_back(iBottomIdx);
-		vecIdx.push_back(iBottomIdx - (i + 2));
-		vecIdx.push_back(iBottomIdx - (i + 1));
-	}
-
-	pMesh = new CMesh(true);
-	pMesh->Create(vecVtx.data(), vecVtx.size(), vecIdx.data(), vecIdx.size());
-	AddRes<CMesh>(L"ConeMesh", pMesh);
-	vecVtx.clear();
-	vecIdx.clear();
-
 }
 
 void CResMgr::CreateDefaultGraphicsShader()
