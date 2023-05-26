@@ -63,7 +63,7 @@ void CreateTestLevel()
 
 	pLightObj->Light3D()->SetLightDiffuse(Vec3(1.f, 1.f, 1.f));
 	//pLightObj->Light3D()->SetLightSpecular(Vec3(0.3f, 0.3f, 0.3f));
-	//pLightObj->Light3D()->SetLightAmbient(Vec3(0.1f, 0.1f, 0.1f));	
+	pLightObj->Light3D()->SetLightAmbient(Vec3(0.1f, 0.1f, 0.1f));
 
 	pLightObj->Light3D()->SetRadius(400.f);
 
@@ -86,8 +86,8 @@ void CreateTestLevel()
 	pSkyBox->Transform()->SetRelativeScale(Vec3(100.f, 100.f, 100.f));
 	pSkyBox->Transform()->SetRelativeRot(Vec3(0.f, XM_PI / 2.f, 0.f));
 
-	pSkyBox->SkyBox()->SetType(SKYBOX_TYPE::CUBE);
-	pSkyBox->SkyBox()->SetSkyTexture(CResMgr::GetInst()->FindRes<CTexture>(L"texture\\skybox\\SkyWater.dds"));
+	pSkyBox->SkyBox()->SetType(SKYBOX_TYPE::SPHERE);
+	pSkyBox->SkyBox()->SetSkyTexture(CResMgr::GetInst()->FindRes<CTexture>(L"texture\\skybox\\Sky02.jpg"));
 
 	SpawnGameObject(pSkyBox, Vec3(0.f, 0.f, 0.f), 0);
 
@@ -134,10 +134,9 @@ void CreateTestLevel()
 
 	pObject->Transform()->SetRelativeScale(Vec3(200.f, 200.f, 200.f));
 	pObject->Decal()->SetOutputTexture(CResMgr::GetInst()->FindRes<CTexture>(L"texture\\MagicCircle.png"));
+	pObject->Decal()->SetAsLight(true);
 
-	SpawnGameObject(pObject, Vec3(0.f, 0.f, 0.f), 0);
-
-
+	SpawnGameObject(pObject, Vec3(0.f, 200.f, 0.f), 0);
 
 	// 충돌 시킬 레이어 짝 지정
 	CCollisionMgr::GetInst()->LayerCheck(L"Player", L"Monster");

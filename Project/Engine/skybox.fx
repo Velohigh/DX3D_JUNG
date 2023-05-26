@@ -34,11 +34,9 @@ VS_OUT VS_SkyBox(VS_IN _in)
     float4 vViewPos = mul(float4(_in.vPos, 0.f), g_matView);
     output.vPosition = mul(float4(vViewPos.xyz, 1.f), g_matProj);
     output.vPosition.z = output.vPosition.w;
-    
-    //output.vPosition = mul(float4(_in.vPos, 1.f), g_matWVP);        
-    //output.vUV = _in.vUV;    
-    
     output.vLocalPos = _in.vPos;
+    
+    output.vUV = _in.vUV;
     
     return output;
 }

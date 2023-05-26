@@ -14,7 +14,12 @@
 #include "CSkyBox.h"
 #include "CDecal.h"
 
-//#include "CCollider3D.h"
-//#include "CAnimator3D.h"
 
-//#include "Landscape.h"
+// #include "Landscape.h"	// 지형, 테셀레이션
+// Shadow ---->
+// FBX
+// #include "CAnimator3D.h"  
+// 최적화, Instancing
+
+
+//#include "CCollider3D.h"

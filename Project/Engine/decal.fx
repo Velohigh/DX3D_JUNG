@@ -45,8 +45,8 @@ PS_OUT PS_Decal(VS_DECAL_OUT _in)
     float2 vUV = _in.vPosition.xy / g_Resolution;
     
     float3 vViewPos = g_tex_1.Sample(g_sam_0, vUV).xyz;
-    //if (!any(vViewPos))
-    //    discard;
+    if (!any(vViewPos))
+        discard;
     
     float3 vWorldPos = mul(float4(vViewPos, 1.f), g_matViewInv);
     float3 vLocalPos = mul(float4(vWorldPos, 1.f), g_matWorldInv);
@@ -58,7 +58,16 @@ PS_OUT PS_Decal(VS_DECAL_OUT _in)
         if (g_btex_0)
         {
             float2 vSampleUV = float2(vLocalPos.x + 0.5f, 0.5f - vLocalPos.z);
-            output.vColor = g_tex_0.Sample(g_sam_0, vSampleUV);
+            float4 vSampleColor = g_tex_0.Sample(g_sam_0, vSampleUV);
+            
+            if (g_int_0)
+            {
+                output.vEmissive = vSampleColor;
+            }
+            else
+            {
+                output.vColor = vSampleColor;
+            }
         }
         else
         {

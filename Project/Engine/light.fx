@@ -181,6 +181,7 @@ PS_OUT PS_SpotLightShader(VS_OUT _in)
 // g_tex_0 : ColorTarget
 // g_tex_1 : DiffuseTarget
 // g_tex_2 : SpecularTarget
+// g_tex_3 : EmissiveTarget
 // ========================
 VS_OUT VS_LightMerge(VS_IN _in)
 {
@@ -200,8 +201,9 @@ float4 PS_LightMerge(VS_OUT _in) : SV_Target0
     float3 Color = g_tex_0.Sample(g_sam_0, _in.vUV).xyz;
     float3 Diffuse = g_tex_1.Sample(g_sam_0, _in.vUV).xyz;
     float3 Specular = g_tex_2.Sample(g_sam_0, _in.vUV).xyz;
+    float3 Emissive = g_tex_3.Sample(g_sam_0, _in.vUV).xyz;
     
-    vOutColor.xyz = Color * Diffuse + Specular;
+    vOutColor.xyz = (Color * Diffuse) + Emissive + Specular;
     vOutColor.a = 1.f;
     
     return vOutColor;
