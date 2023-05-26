@@ -14,7 +14,9 @@ public:
     void SetOutputTexture(Ptr<CTexture> _Tex) { m_DecalTex = _Tex; }
     void SetDebugShape(bool _bDebugShapeOn) { m_DebugShapeOn = _bDebugShapeOn; }
 
-    bool& GetDebugShape() { return m_DebugShapeOn; }
+    const bool& GetDebugShape() { return m_DebugShapeOn; }
+    const int& GetAsLight() { return m_Light; }
+    
 
 
     virtual void finaltick() override;
