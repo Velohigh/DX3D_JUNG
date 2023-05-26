@@ -863,6 +863,11 @@ void CResMgr::CreateDefaultGraphicsShader()
 	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 	pShader->SetBSType(BS_TYPE::ALPHA_BLEND);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DECAL);
+
+	// Param	
+	pShader->AddTexParam(TEX_0, "Output Texture");
+	//pShader->AddTexParam(TEX_1, "Position Texture");
+
 	AddRes(pShader->GetKey(), pShader);
 }
 

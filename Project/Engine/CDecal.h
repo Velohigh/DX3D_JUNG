@@ -16,6 +16,7 @@ public:
 
     const bool& GetDebugShape() { return m_DebugShapeOn; }
     const int& GetAsLight() { return m_Light; }
+    Ptr<CTexture> GetOutputTexture() { return m_DecalTex; }
     
 
 

@@ -180,19 +180,19 @@
       <Filter>08. MRT</Filter>
     </ClCompile>
     <ClCompile Include="CRenderMgr.cpp">
-      <Filter>02. Manager\RenderMgr</Filter>
+      <Filter>02. Manager\00. RenderMgr</Filter>
     </ClCompile>
     <ClCompile Include="CRenderMgr_init.cpp">
-      <Filter>02. Manager\RenderMgr</Filter>
+      <Filter>02. Manager\00. RenderMgr</Filter>
     </ClCompile>
     <ClCompile Include="CResMgr.cpp">
-      <Filter>02. Manager\ResMgr</Filter>
+      <Filter>02. Manager\01. ResMgr</Filter>
     </ClCompile>
     <ClCompile Include="CDecal.cpp">
       <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
     <ClCompile Include="CResMgr_init.cpp">
-      <Filter>02. Manager\ResMgr</Filter>
+      <Filter>02. Manager\01. ResMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -348,10 +348,10 @@
       <Filter>08. MRT</Filter>
     </ClInclude>
     <ClInclude Include="CRenderMgr.h">
-      <Filter>02. Manager\RenderMgr</Filter>
+      <Filter>02. Manager\00. RenderMgr</Filter>
     </ClInclude>
     <ClInclude Include="CResMgr.h">
-      <Filter>02. Manager\ResMgr</Filter>
+      <Filter>02. Manager\01. ResMgr</Filter>
     </ClInclude>
     <ClInclude Include="CDecal.h">
       <Filter>03. CGameObject\Component\RenderComponent</Filter>
@@ -406,10 +406,10 @@
     <Filter Include="06. Level">
       <UniqueIdentifier>{9b585ac4-9db7-4b4e-979d-11c6ea0bce84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Manager\RenderMgr">
+    <Filter Include="02. Manager\00. RenderMgr">
       <UniqueIdentifier>{f5a6e161-b194-41bb-a928-ffaba503f9e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Manager\ResMgr">
+    <Filter Include="02. Manager\01. ResMgr">
       <UniqueIdentifier>{5f0024be-9970-4309-91dd-545e60fae478}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
