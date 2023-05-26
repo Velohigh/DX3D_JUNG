@@ -113,6 +113,9 @@
     <Filter Include="UI\InspectorUI\ComponentUI\07. Light3DUI">
       <UniqueIdentifier>{a0f59eff-a564-4895-93e4-6bef328760a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI\InspectorUI\ComponentUI\11. DecalUI">
+      <UniqueIdentifier>{98565852-2369-4657-b5ca-98b2cbb6bd87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="Light3DUI.h">
       <Filter>UI\InspectorUI\ComponentUI\07. Light3DUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DecalUI.h">
+      <Filter>UI\InspectorUI\ComponentUI\11. DecalUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -372,6 +378,9 @@
     </ClCompile>
     <ClCompile Include="Light3DUI.cpp">
       <Filter>UI\InspectorUI\ComponentUI\07. Light3DUI</Filter>
+    </ClCompile>
+    <ClCompile Include="DecalUI.cpp">
+      <Filter>UI\InspectorUI\ComponentUI\11. DecalUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
