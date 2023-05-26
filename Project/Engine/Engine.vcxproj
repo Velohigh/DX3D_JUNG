@@ -264,6 +264,7 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CRenderMgr_init.cpp" />
     <ClCompile Include="CRes.cpp" />
     <ClCompile Include="CResMgr.cpp" />
+    <ClCompile Include="CResMgr_init.cpp" />
     <ClCompile Include="CScript.cpp" />
     <ClCompile Include="CSetColorShader.cpp" />
     <ClCompile Include="CShader.cpp" />

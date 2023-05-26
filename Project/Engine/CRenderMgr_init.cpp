@@ -73,6 +73,23 @@ void CRenderMgr::init()
         m_MRT[(UINT)MRT_TYPE::DEFERRED]->Create(arrRTTex, arrClear, DSTex);
     }
 
+    // =========
+    // DECAL MRT
+    // =========
+    {
+        Vec2 vRenderResolotion = CDevice::GetInst()->GetRenderResolution();
+
+        Ptr<CTexture> arrRTTex[8] = {
+            CResMgr::GetInst()->FindRes<CTexture>(L"ColorTargetTex"),
+            CResMgr::GetInst()->FindRes<CTexture>(L"EmissiveTargetTex"),
+        };
+        Vec4          arrClear[8] = { Vec4(0.f, 0.f, 0.f, 0.f) , };
+
+        Ptr<CTexture> DSTex = nullptr;
+
+        m_MRT[(UINT)MRT_TYPE::DECAL] = new CMRT;
+        m_MRT[(UINT)MRT_TYPE::DECAL]->Create(arrRTTex, arrClear, DSTex);
+    }
 
     // =========
     // Light MRT

@@ -45,11 +45,12 @@ int Light3DUI::render_update()
 
         if (LIGHT_TYPE::DIRECTIONAL == LightType)
         {
-            GetTarget()->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"Sphere"));
+            return FALSE;
+            GetTarget()->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"SphereMesh"));
         }
         else if (LIGHT_TYPE::POINT == LightType)
         {
-            GetTarget()->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"Sphere"));
+            GetTarget()->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"SphereMesh"));
         }
         else if (LIGHT_TYPE::SPOT == LightType)
         {

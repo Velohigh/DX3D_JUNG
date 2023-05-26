@@ -21,6 +21,7 @@ private:
 
 
     vector<CGameObject*>    m_vecDeferred;
+    vector<CGameObject*>    m_vecDecal;
     vector<CGameObject*>    m_vecOpaque;
     vector<CGameObject*>    m_vecMask;
     vector<CGameObject*>    m_vecTransparent;
@@ -59,6 +60,8 @@ public:
 private:
     void clear();
     void render_deferred();
+    void render_decal();
+
     void render_merge();
 
     void render_opaque();

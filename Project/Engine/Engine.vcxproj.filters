@@ -191,6 +191,9 @@
     <ClCompile Include="CDecal.cpp">
       <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
+    <ClCompile Include="CResMgr_init.cpp">
+      <Filter>02. Manager\ResMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CEntity.h" />

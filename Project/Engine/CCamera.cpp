@@ -172,6 +172,9 @@ void CCamera::SortObject()
 				case SHADER_DOMAIN::DOMAIN_DEFERRED:
 					m_vecDeferred.push_back(vecObject[j]);
 					break;
+				case SHADER_DOMAIN::DOMAIN_DECAL:
+					m_vecDecal.push_back(vecObject[j]);
+					break;
 				case SHADER_DOMAIN::DOMAIN_OPAQUE:
 					m_vecOpaque.push_back(vecObject[j]);
 					break;
@@ -203,10 +206,13 @@ void CCamera::render()
 	// =====================================
 	// 쉐이더 도메인에 따라서 순차적으로 그리기
 	// =====================================
-
 	// Deferred Object
 	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::DEFERRED)->OMSet();
 	render_deferred();
+
+	// Decal Render
+	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::DECAL)->OMSet();
+	render_decal();
 
 	// Lighting
 	CRenderMgr::GetInst()->GetMRT(MRT_TYPE::LIGHT)->OMSet();
@@ -238,6 +244,7 @@ void CCamera::render()
 void CCamera::clear()
 {
 	m_vecDeferred.clear();
+	m_vecDecal.clear();
 	m_vecOpaque.clear();
 	m_vecMask.clear();
 	m_vecTransparent.clear();
@@ -250,6 +257,14 @@ void CCamera::render_deferred()
 	for (size_t i = 0; i < m_vecDeferred.size(); ++i)
 	{
 		m_vecDeferred[i]->render();
+	}
+}
+
+void CCamera::render_decal()
+{
+	for (size_t i = 0; i < m_vecDecal.size(); ++i)
+	{
+		m_vecDecal[i]->render();
 	}
 }
 
