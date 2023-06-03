@@ -92,16 +92,16 @@ void CreateTestLevel()
 	pLandScape->SetName(L"LandScape");
 
 	pLandScape->AddComponent(new CTransform);
-	pLandScape->AddComponent(new CMeshRender);
-	//pLandScape->AddComponent(new CLandScape);
-	//pLandScape->LandScape()->SetFace(4, 4);
+	pLandScape->AddComponent(new CLandScape);
 
-	pLandScape->Transform()->SetRelativeScale(Vec3(500.f, 500, 500));
-	pLandScape->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
-	pLandScape->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std3DMtrl"));
-	pLandScape->MeshRender()->SetBounding(100);
+	pLandScape->Transform()->SetRelativeScale(Vec3(200.f, 1000.f, 200.f));
 
-	SpawnGameObject(pLandScape, Vec3(0.f, 0.f, 500.f), 0);
+	pLandScape->LandScape()->SetFace(32, 32);
+	pLandScape->LandScape()->SetFrustumCheck(false);
+	pLandScape->LandScape()->SetHeightMap(CResMgr::GetInst()->FindRes<CTexture>(L"texture\\HeightMap_01.jpg"));
+
+
+	SpawnGameObject(pLandScape, Vec3(0.f, 0.f, 0.f), 0);
 
 
 	// 충돌 시킬 레이어 짝 지정
