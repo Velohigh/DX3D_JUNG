@@ -914,10 +914,16 @@ void CResMgr::CreateDefaultGraphicsShader()
 	pShader = new CGraphicsShader;
 	pShader->SetKey(L"TessShader");
 	pShader->CreateVertexShader(L"shader\\tess.fx", "VS_Tess");
+	pShader->CreateHullShader(L"shader\\tess.fx", "HS_Tess");
+	pShader->CreateDomainShader(L"shader\\tess.fx", "DS_Tess");
 	pShader->CreatePixelShader(L"shader\\tess.fx", "PS_Tess");
+
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_3_CONTROL_POINT_PATCHLIST);
 	pShader->SetRSType(RS_TYPE::WIRE_FRAME);
 	pShader->SetDSType(DS_TYPE::LESS);
 	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->AddScalarParam(FLOAT_0, "Divide");
+
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
 	AddRes(pShader->GetKey(), pShader);
 

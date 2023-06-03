@@ -48,7 +48,7 @@ int ParamUI::Param_Float(const string& _strDesc, float* _pData, bool _bDrag)
 
     if (_bDrag)
     {
-        if (ImGui::DragFloat(strIntName.c_str(), _pData))
+        if (ImGui::DragFloat(strIntName.c_str(), _pData, 0.05f))
         {
             return 1;
         }
