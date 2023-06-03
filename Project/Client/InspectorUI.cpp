@@ -69,7 +69,7 @@ InspectorUI::InspectorUI()
 	AddChildUI(m_arrComUI[(UINT)COMPONENT_TYPE::TILEMAP]);
 
 	m_arrComUI[(UINT)COMPONENT_TYPE::DECAL] = new DecalUI;
-	m_arrComUI[(UINT)COMPONENT_TYPE::DECAL]->SetSize(0.f, 150.f);
+	m_arrComUI[(UINT)COMPONENT_TYPE::DECAL]->SetSize(0.f, 350.f);
 	AddChildUI(m_arrComUI[(UINT)COMPONENT_TYPE::DECAL]);
 
 

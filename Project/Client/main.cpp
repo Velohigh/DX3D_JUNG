@@ -50,6 +50,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // ImGui 초기화
     ImGuiMgr::GetInst()->init(g_hWnd);
 
+    // PhysX 초기화
+
+
     // 테스트 용 레벨 생성
     CreateTestLevel();
 

@@ -12,16 +12,6 @@ CResMgr::~CResMgr()
 {
 }
 
-void CResMgr::init()
-{
-	InitSound();
-
-	CreateDefaultMesh();
-	CreateDefaultGraphicsShader();
-	CreateDefaultComputeShader();
-	CreateDefaultMaterial();
-}
-
 
 void CResMgr::tick()
 {

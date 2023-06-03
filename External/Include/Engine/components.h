@@ -14,8 +14,7 @@
 #include "CSkyBox.h"
 #include "CDecal.h"
 
-
-// #include "Landscape.h"	// 지형, 테셀레이션
+#include "CLandscape.h"	// 지형, 테셀레이션
 // Shadow ---->
 // FBX
 // #include "CAnimator3D.h"  

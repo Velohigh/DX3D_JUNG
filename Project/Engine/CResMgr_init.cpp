@@ -2,6 +2,16 @@
 #include "CResMgr.h"
 
 
+void CResMgr::init()
+{
+	InitSound();
+
+	CreateDefaultMesh();
+	CreateDefaultGraphicsShader();
+	CreateDefaultComputeShader();
+	CreateDefaultMaterial();
+}
+
 void CResMgr::InitSound()
 {
 	FMOD::System_Create(&CSound::g_pFMOD);
@@ -743,6 +753,30 @@ void CResMgr::CreateDefaultGraphicsShader()
 	AddRes(pShader->GetKey(), pShader);
 
 	// ============================
+	// LandScapeShader	
+	// RS_TYPE : CULL_BACK
+	// DS_TYPE : LESS
+	// BS_TYPE : DEFAULT
+	// 
+	// Parameter
+	// g_tex_0 : Output Texture
+	// g_tex_1 : Normal Texture
+	// Domain : Opaque
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"LandScapeShader");
+	pShader->CreateVertexShader(L"shader\\landscape.fx", "VS_LandScape");
+	pShader->CreatePixelShader(L"shader\\landscape.fx", "PS_LandScape");
+
+	pShader->SetRSType(RS_TYPE::CULL_BACK);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
+
+	AddRes(pShader->GetKey(), pShader);
+
+
+	// ============================
 	// GrayShader
 	// RS_TYPE : CULL_NONE
 	// DS_TYPE : NO_TEST_NO_WRITE
@@ -869,6 +903,24 @@ void CResMgr::CreateDefaultGraphicsShader()
 	//pShader->AddTexParam(TEX_1, "Position Texture");
 
 	AddRes(pShader->GetKey(), pShader);
+
+	// ============================
+	// TessShader
+	// RS_TYPE : CULL_NONE
+	// DS_TYPE : LESS
+	// BS_TYPE : DEFAULT	 
+	// Domain : DOMAIN_OPAQUE
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"TessShader");
+	pShader->CreateVertexShader(L"shader\\tess.fx", "VS_Tess");
+	pShader->CreatePixelShader(L"shader\\tess.fx", "PS_Tess");
+	pShader->SetRSType(RS_TYPE::WIRE_FRAME);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
+	AddRes(pShader->GetKey(), pShader);
+
 }
 
 
@@ -936,6 +988,10 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"Std3D_Deferred_WireShader"));
 	AddRes(L"Std3D_Deferred_WireMtrl", pMtrl);
 
+	// LandScapeMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"LandScapeShader"));
+	AddRes(L"LandScapeMtrl", pMtrl);
 
 	// DebugShape Material
 	pMtrl = new CMaterial(true);
@@ -992,5 +1048,10 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"DecalShader"));
 	AddRes(L"DecalMtrl", pMtrl);
+
+	// TessMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"TessShader"));
+	AddRes(L"TessMtrl", pMtrl);
 
 }

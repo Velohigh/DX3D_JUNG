@@ -6,6 +6,7 @@ class DecalUI :
     public ComponentUI
 {
 private:
+    bool ColorCheckBox;
 
 public:
     virtual int render_update() override;

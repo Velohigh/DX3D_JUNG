@@ -41,10 +41,21 @@ CRenderMgr::~CRenderMgr()
     Safe_Del_Array(m_MRT);
 }
 
+void CRenderMgr::render_clear()
+{
+    MRT_Clear();
+
+    // Texture Register Clear
+    for (UINT i = 0; i < (UINT)TEX_PARAM::TEX_END; ++i)
+    {
+        CTexture::Clear(i);
+    }
+}
+
 void CRenderMgr::render()
 {
     // 렌더링 시작
-    MRT_Clear();
+    render_clear();
 
     // 광원 및 전역 데이터 업데이트 및 바인딩
     UpdateData();
@@ -55,6 +66,8 @@ void CRenderMgr::render()
     // 광원 해제
     Clear();
 }
+
+
 
 
 void CRenderMgr::render_play()

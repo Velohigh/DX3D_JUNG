@@ -10,6 +10,7 @@
 // DS_TYPE  : NO_TEST_NO_WRITE
 // BS_TYPE  : ONE_ONE
 
+// g_int_0  : AsLight On
 // g_tex_0  : Output Texture
 // g_tex_1  : Position Target
 // =========================
@@ -60,7 +61,7 @@ PS_OUT PS_Decal(VS_DECAL_OUT _in)
             float2 vSampleUV = float2(vLocalPos.x + 0.5f, 0.5f - vLocalPos.z);
             float4 vSampleColor = g_tex_0.Sample(g_sam_0, vSampleUV);
             
-            if (g_int_0)
+            if (g_int_0) // 광원으로 사용.
             {
                 output.vEmissive = vSampleColor;
             }

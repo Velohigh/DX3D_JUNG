@@ -23,10 +23,10 @@ private:
     vector<tDebugShapeInfo>     m_vecShapeInfo;
 
     vector<CLight2D*>           m_vecLight2D;
-    CStructuredBuffer* m_Light2DBuffer;
+    CStructuredBuffer*          m_Light2DBuffer;
 
     vector<CLight3D*>           m_vecLight3D;
-    CStructuredBuffer* m_Light3DBuffer;
+    CStructuredBuffer*          m_Light3DBuffer;
 
 
     void (CRenderMgr::* RENDER_FUNC)(void);
@@ -36,6 +36,9 @@ private:
 public:
     void init();
     void render();
+
+private:
+    void render_clear();
 
 public:
     CMRT* GetMRT(MRT_TYPE _type) { return m_MRT[(UINT)_type]; }

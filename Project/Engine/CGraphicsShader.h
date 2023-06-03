@@ -23,7 +23,7 @@ private:
     ComPtr<ID3DBlob>                m_HSBlob;
     ComPtr<ID3DBlob>                m_DSBlob;
     ComPtr<ID3DBlob>                m_GSBlob;
-    ComPtr<ID3DBlob>                m_PSBlob;    
+    ComPtr<ID3DBlob>                m_PSBlob;
 
     ComPtr<ID3D11VertexShader>      m_VS;
     ComPtr<ID3D11HullShader>        m_HS;
@@ -53,11 +53,15 @@ public:
     void SetBSType(BS_TYPE _Type) { m_BSType = _Type; }
     void SetDomain(SHADER_DOMAIN _domain) { m_Domain = _domain; }
 
+    RS_TYPE GetRSType() { return m_RSType; }
+
+
+
     SHADER_DOMAIN GetDomain() { return m_Domain; }
     virtual void UpdateData() override;
 
-    void AddScalarParam(SCALAR_PARAM _Param, const string& _desc) { m_vecScalarParam.push_back(tScalarParam{ _Param, _desc });}
-    void AddTexParam(TEX_PARAM _Param, const string& _desc) { m_vecTexParam.push_back(tTexParam{_Param, _desc}); }
+    void AddScalarParam(SCALAR_PARAM _Param, const string& _desc) { m_vecScalarParam.push_back(tScalarParam{ _Param, _desc }); }
+    void AddTexParam(TEX_PARAM _Param, const string& _desc) { m_vecTexParam.push_back(tTexParam{ _Param, _desc }); }
 
     const vector<tScalarParam>& GetScalarParam() { return m_vecScalarParam; }
     const vector<tTexParam>& GetTexParam() { return m_vecTexParam; }

@@ -44,6 +44,8 @@ public:
     GET_OTHER_COMPONENT(Decal);
     GET_OTHER_COMPONENT(Animator2D);
 
+    GET_OTHER_COMPONENT(LandScape);
+
 public:
     CComponent(COMPONENT_TYPE _Type);
     CComponent(const CComponent& _Other);

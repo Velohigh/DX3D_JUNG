@@ -12,6 +12,7 @@
 
 DecalUI::DecalUI()
     : ComponentUI("##DecalUI", COMPONENT_TYPE::DECAL)
+    , ColorCheckBox(nullptr)
 {
     SetName("Decal");
 }
@@ -27,7 +28,6 @@ int DecalUI::render_update()
         return FALSE;
 
     // 데칼 텍스쳐 미리 띄우기
-    ImGui::Text("OutputTexture");
     Ptr<CTexture> TargetTex = GetTarget()->Decal()->GetOutputTexture();
     char szBuff[50] = {};
 
@@ -47,6 +47,8 @@ int DecalUI::render_update()
 
 
     // 선택된 텍스쳐 키값 출력
+    ImGui::Text("Texture");
+    ImGui::SameLine();
     GetResKey(TargetTex.Get(), szBuff, 50);
     ImGui::InputText("##OutputTextureName", szBuff, 50, ImGuiInputTextFlags_ReadOnly);
 
@@ -120,9 +122,17 @@ int DecalUI::render_update()
     }
 
 
+    // 색상 지정
+    ImGui::Checkbox("##UseColorCheckBox", &ColorCheckBox);
+    ImGui::SameLine();
+    ImGui::Text("UseColor");
 
-
-
+    float* DecalColor = GetTarget()->Decal()->GetColor();
+    
+    if (ColorCheckBox)
+    {
+        ImGui::ColorEdit3("color 1", DecalColor);
+    }
 
     return TRUE;
 }
