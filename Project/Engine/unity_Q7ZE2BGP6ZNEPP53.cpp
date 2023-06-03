@@ -39,6 +39,9 @@
 #include "D:\AR43_JUNGDX3D\DX3D_JGH2\DX3D_JUNG\Project\Engine\CFontMgr.cpp"
 
 
+#include "D:\AR43_JUNGDX3D\DX3D_JGH2\DX3D_JUNG\Project\Engine\CFrustum.cpp"
+
+
 #include "D:\AR43_JUNGDX3D\DX3D_JGH2\DX3D_JUNG\Project\Engine\CGameObject.cpp"
 
 
@@ -46,7 +49,4 @@
 
 
 #include "D:\AR43_JUNGDX3D\DX3D_JGH2\DX3D_JUNG\Project\Engine\CKeyMgr.cpp"
-
-
-#include "D:\AR43_JUNGDX3D\DX3D_JGH2\DX3D_JUNG\Project\Engine\CLandScape.cpp"
 
