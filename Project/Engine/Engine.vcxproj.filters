@@ -62,9 +62,6 @@
     <ClCompile Include="CAnimator2D.cpp">
       <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
-    <ClCompile Include="CCamera.cpp">
-      <Filter>03. CGameObject\Component</Filter>
-    </ClCompile>
     <ClCompile Include="CCollider2D.cpp">
       <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
@@ -203,6 +200,12 @@
     <ClCompile Include="CLandScape.cpp">
       <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>03. CGameObject\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CFrustum.cpp">
+      <Filter>03. CGameObject\Component\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CEntity.h" />
@@ -210,9 +213,6 @@
       <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CAnimator2D.h">
-      <Filter>03. CGameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="CCamera.h">
       <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CCollider2D.h">
@@ -368,6 +368,12 @@
     <ClInclude Include="CLandScape.h">
       <Filter>03. CGameObject\Component\RenderComponent</Filter>
     </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>03. CGameObject\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CFrustum.h">
+      <Filter>03. CGameObject\Component\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01. header">
@@ -423,6 +429,9 @@
     </Filter>
     <Filter Include="02. Manager\01. ResMgr">
       <UniqueIdentifier>{5f0024be-9970-4309-91dd-545e60fae478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. CGameObject\Component\Camera">
+      <UniqueIdentifier>{b8d31448-7b5a-4441-bd1f-1113fb873adc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
