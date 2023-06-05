@@ -10,6 +10,9 @@
 // ImGui
 #include "ImGuiMgr.h"
 
+// PhysX
+#include "PhysXMgr.h"
+
 #include "TestLevel.h"
 
 // 전역 변수:
@@ -51,7 +54,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ImGuiMgr::GetInst()->init(g_hWnd);
 
     // PhysX 초기화
-
+    PhysXMgr::GetInst()->init();
 
     // 테스트 용 레벨 생성
     CreateTestLevel();
@@ -81,6 +84,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             CEditorObjMgr::GetInst()->progress();
 
             ImGuiMgr::GetInst()->progress();
+
+            PhysXMgr::GetInst()->progress();
 
             // 렌더 종료
             CDevice::GetInst()->Present();

@@ -15,6 +15,8 @@
 
 #include "CLevelSaveLoad.h"
 
+#include "PhysXMgr.h"
+
 
 
 void CreateTestLevel()
@@ -100,8 +102,10 @@ void CreateTestLevel()
 	pLandScape->LandScape()->SetFrustumCheck(false);
 	pLandScape->LandScape()->SetHeightMap(CResMgr::GetInst()->FindRes<CTexture>(L"texture\\HeightMap_01.jpg"));
 
-
 	SpawnGameObject(pLandScape, Vec3(0.f, 0.f, 0.f), 0);
+	PhysXMgr::GetInst()->CreatePlane(Vec4(0, 1, 0, 0));
+
+
 
 
 	// 충돌 시킬 레이어 짝 지정

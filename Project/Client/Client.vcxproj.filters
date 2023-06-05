@@ -116,6 +116,9 @@
     <Filter Include="UI\InspectorUI\ComponentUI\11. DecalUI">
       <UniqueIdentifier>{98565852-2369-4657-b5ca-98b2cbb6bd87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager\PhysXMgr">
+      <UniqueIdentifier>{92f6f789-7eeb-4c73-8675-a652196d6fb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -244,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="DecalUI.h">
       <Filter>UI\InspectorUI\ComponentUI\11. DecalUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysXMgr.h">
+      <Filter>Manager\PhysXMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +387,9 @@
     </ClCompile>
     <ClCompile Include="DecalUI.cpp">
       <Filter>UI\InspectorUI\ComponentUI\11. DecalUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysXMgr.cpp">
+      <Filter>Manager\PhysXMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
