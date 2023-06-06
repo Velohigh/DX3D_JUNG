@@ -127,6 +127,9 @@ PxRigidDynamic* PhysXMgr::CreateDynamic(const PxTransform& t, const PxGeometry& 
     dynamic->setLinearVelocity(velocity);   // 물체의 선속도, 물체가 얼마나 빨리 이동하는지를 결정
     mScene->addActor(*dynamic);             // 씬에 해당 액터 추가
     m_vecDynamicActor.push_back(dynamic);
+
+    TestDynamicActor = dynamic; // 테스트용
+
     return dynamic;
 }
 

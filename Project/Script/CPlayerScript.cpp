@@ -76,14 +76,14 @@ void CPlayerScript::tick()
 	}
 
 	Transform()->SetRelativePos(vCurPos);		
-	PhysXMgr::GetInst()->GetPlayer()->setGlobalPose(physx::PxTransform(vCurPos.x, vCurPos.y, vCurPos.z));
+	PhysXMgr::GetInst()->GetTestActor()->setGlobalPose(physx::PxTransform(vCurPos.x, vCurPos.y, vCurPos.z));
 
-	if (KEY_TAP(KEY::SPACE))
-	{
-		DrawDebugCircle(Transform()->GetWorldPos(), 500.f, Vec4(0.f, 0.f, 1.f, 1.f), Vec3(0.f, 0.f, 0.f), 2.f);
-
-		Shoot();
-	}	
+	//if (KEY_TAP(KEY::SPACE))
+	//{
+	//	DrawDebugCircle(Transform()->GetWorldPos(), 500.f, Vec4(0.f, 0.f, 1.f, 1.f), Vec3(0.f, 0.f, 0.f), 2.f);
+	//
+	//	Shoot();
+	//}	
 }
 
 void CPlayerScript::Shoot()

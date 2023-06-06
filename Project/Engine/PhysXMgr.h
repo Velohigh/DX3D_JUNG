@@ -20,7 +20,6 @@
 #pragma comment(lib, "PhysX//PhysXVehicle_static_64")
 #pragma comment(lib, "PhysX//SceneQuery_static_64")
 
-
 	using namespace physx;
 class PhysXMgr :
     public CSingleton<PhysXMgr>
@@ -31,7 +30,7 @@ private:
     vector<CGameObject*>        m_vecDynamicObject;
     vector<PxRigidDynamic*>     m_vecDynamicActor;
 
-    PxRigidDynamic*             m_Player;
+    PxRigidDynamic*             TestDynamicActor;
     
 
 public:
@@ -48,10 +47,7 @@ public:
     PxRigidStatic* CreatePlane(Vec4 _Plane);
 
 public:
-    PxRigidDynamic* GetPlayer()
-    {
-        return m_Player;
-    }
+	PxRigidDynamic* GetTestActor() { return TestDynamicActor; }
     
 
 };
