@@ -206,6 +206,9 @@
     <ClCompile Include="CFrustum.cpp">
       <Filter>03. CGameObject\Component\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="PhysXMgr.cpp">
+      <Filter>02. Manager\PhysXMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CEntity.h" />
@@ -374,6 +377,9 @@
     <ClInclude Include="CFrustum.h">
       <Filter>03. CGameObject\Component\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="PhysXMgr.h">
+      <Filter>02. Manager\PhysXMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01. header">
@@ -432,6 +438,9 @@
     </Filter>
     <Filter Include="03. CGameObject\Component\Camera">
       <UniqueIdentifier>{b8d31448-7b5a-4441-bd1f-1113fb873adc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Manager\PhysXMgr">
+      <UniqueIdentifier>{5fe280cc-e355-4732-8f66-67a8d33a4f6e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

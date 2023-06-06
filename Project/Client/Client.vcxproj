@@ -180,7 +180,6 @@
     <ClInclude Include="OutlinerUI.h" />
     <ClInclude Include="ParamUI.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="PhysXMgr.h" />
     <ClInclude Include="PrefabUI.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResUI.h" />
@@ -230,7 +229,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PhysXMgr.cpp" />
     <ClCompile Include="PrefabUI.cpp" />
     <ClCompile Include="ResUI.cpp" />
     <ClCompile Include="ScriptUI.cpp" />

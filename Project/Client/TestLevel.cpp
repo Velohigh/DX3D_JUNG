@@ -15,7 +15,7 @@
 
 #include "CLevelSaveLoad.h"
 
-#include "PhysXMgr.h"
+#include <Engine\PhysXMgr.h>
 
 
 
@@ -106,6 +106,23 @@ void CreateTestLevel()
 	PhysXMgr::GetInst()->CreatePlane(Vec4(0, 1, 0, 0));
 
 
+	// Sphere Object_테스트용
+	CGameObject* pSphere = new CGameObject;
+	pSphere->SetName(L"Sphere_Deferred");
+	pSphere->AddComponent(new CTransform);
+	pSphere->AddComponent(new CMeshRender);
+	pSphere->AddComponent(new CPlayerScript);
+
+	pSphere->Transform()->SetRelativeScale(Vec3(50, 50, 50));
+	pSphere->Transform()->SetRelativeRot(Vec3(0.f, 0.f, 0.f));
+
+	pSphere->MeshRender()->SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"SphereMesh"));
+	pSphere->MeshRender()->SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"Std3D_DeferredMtrl"));
+	pSphere->MeshRender()->GetMaterial()->SetTexParam(TEX_0, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03.tga"));
+	pSphere->MeshRender()->GetMaterial()->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03_N.tga"));
+
+	SpawnGameObject(pSphere, Vec3(0.f, 500.f, 0.f), 0);
+	PhysXMgr::GetInst()->CreateDynamic(PxTransform(PxVec3(0, 500, 0)), PxSphereGeometry(25.f), pSphere);
 
 
 	// 충돌 시킬 레이어 짝 지정

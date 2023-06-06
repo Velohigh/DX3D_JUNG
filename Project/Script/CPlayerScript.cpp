@@ -5,6 +5,7 @@
 #include <Engine\CMaterial.h>
 
 #include "CMissileScript.h"
+#include <Engine\PhysXMgr.h>
 
 
 CPlayerScript::CPlayerScript()
@@ -27,6 +28,13 @@ void CPlayerScript::begin()
 void CPlayerScript::tick()
 {
 	Vec3 vCurPos = Transform()->GetRelativePos();
+
+	if (KEY_TAP(KEY::R))
+	{
+		vCurPos.y += 200.f;
+
+	}
+
 
 	if (KEY_PRESSED(KEY::UP))
 	{
@@ -67,7 +75,8 @@ void CPlayerScript::tick()
 		Transform()->SetRelativeRot(vRot);
 	}
 
-	Transform()->SetRelativePos(vCurPos);			
+	Transform()->SetRelativePos(vCurPos);		
+	PhysXMgr::GetInst()->GetPlayer()->setGlobalPose(physx::PxTransform(vCurPos.x, vCurPos.y, vCurPos.z));
 
 	if (KEY_TAP(KEY::SPACE))
 	{
