@@ -73,6 +73,7 @@ InspectorUI::InspectorUI()
 	AddChildUI(m_arrComUI[(UINT)COMPONENT_TYPE::DECAL]);
 
 
+
 	// ResUI
 	m_arrResUI[(UINT)RES_TYPE::MESHDATA] = new MeshDataUI;
 	m_arrResUI[(UINT)RES_TYPE::MESHDATA]->SetSize(0.f, 0.f);

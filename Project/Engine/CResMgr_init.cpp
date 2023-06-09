@@ -51,6 +51,95 @@ void CResMgr::CreateDefaultMesh()
 
 
 	// =============
+	// Frustum Debug Mesh 持失
+	// =============
+	//     4 ------ 5
+	//     |        |  Far
+	//   / |        |
+	//	/  7 ------ 6	
+	// /      /
+	// 0 -- 1     /
+	// |    |    / Near
+	// 3 -- 2
+
+	// 0~3
+	v.vPos = Vec3(-1.f, 1.f, 0.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+	v.vPos = Vec3(1.f, 1.f, 0.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+	v.vPos = Vec3(1.f, -1.f, 0.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+	v.vPos = Vec3(-1.f, -1.f, 0.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+
+	// 4~7
+	v.vPos = Vec3(-1.f, 1.f, 1.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+	v.vPos = Vec3(1.f, 1.f, 1.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+	v.vPos = Vec3(1.f, -1.f, 1.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+	v.vPos = Vec3(-1.f, -1.f, 1.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	vecVtx.push_back(v);
+
+	// near
+	vecIdx.push_back(0);
+	vecIdx.push_back(1);
+	vecIdx.push_back(2);
+	vecIdx.push_back(3);
+	vecIdx.push_back(0);
+
+	// left
+	vecIdx.push_back(0);
+	vecIdx.push_back(4);
+	vecIdx.push_back(7);
+	vecIdx.push_back(3);
+	vecIdx.push_back(0);
+
+	// top
+	vecIdx.push_back(0);
+	vecIdx.push_back(1);
+	vecIdx.push_back(5);
+	vecIdx.push_back(4);
+
+	// far
+	vecIdx.push_back(4);
+	vecIdx.push_back(7);
+	vecIdx.push_back(6);
+	vecIdx.push_back(5);
+	vecIdx.push_back(4);
+
+	// bottom
+	vecIdx.push_back(4);
+	vecIdx.push_back(7);
+	vecIdx.push_back(3);
+	vecIdx.push_back(2);
+	vecIdx.push_back(6);
+
+	// right
+	vecIdx.push_back(6);
+	vecIdx.push_back(5);
+	vecIdx.push_back(1);
+	vecIdx.push_back(2);
+	vecIdx.push_back(6);
+
+	pMesh = new CMesh(true);
+	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
+	AddRes(L"FrustumDebugMesh", pMesh);
+
+	vecVtx.clear();
+	vecIdx.clear();
+
+
+	// =============
 	// RectMesh 持失
 	// =============
 	// 0 --- 1 
@@ -930,6 +1019,26 @@ void CResMgr::CreateDefaultGraphicsShader()
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
 	AddRes(pShader->GetKey(), pShader);
 
+	// ============================
+	// FrustumShader
+	// RS_TYPE : CULL_NONE
+	// DS_TYPE : LESS
+	// BS_TYPE : DEFAULT	 
+	// Domain : DOMAIN_OPAQUE
+	// ============================
+	pShader = new CGraphicsShader;
+	pShader->SetKey(L"FrustumShader");
+	pShader->CreateVertexShader(L"shader\\frustum.fx", "VS_Frustum");
+	pShader->CreatePixelShader(L"shader\\frustum.fx", "PS_Frustum");
+
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
+	pShader->SetRSType(RS_TYPE::WIRE_FRAME);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASK);
+	AddRes(pShader->GetKey(), pShader);
+
 }
 
 
@@ -1062,5 +1171,10 @@ void CResMgr::CreateDefaultMaterial()
 	pMtrl = new CMaterial(true);
 	pMtrl->SetShader(FindRes<CGraphicsShader>(L"TessShader"));
 	AddRes(L"TessMtrl", pMtrl);
+
+	// FrustumMtrl
+	pMtrl = new CMaterial(true);
+	pMtrl->SetShader(FindRes<CGraphicsShader>(L"FrustumShader"));
+	AddRes(L"FrustumMtrl", pMtrl);
 
 }

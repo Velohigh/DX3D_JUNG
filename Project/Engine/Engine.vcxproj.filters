@@ -52,6 +52,9 @@
     <FxCompile Include="landscape.fx">
       <Filter>05. ShaderCode\02. Render\3D</Filter>
     </FxCompile>
+    <FxCompile Include="frustum.fx">
+      <Filter>05. ShaderCode\02. Render\3D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEntity.cpp" />

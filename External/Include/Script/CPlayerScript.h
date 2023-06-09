@@ -6,6 +6,7 @@ class CPlayerScript :
 {
 private:
     float       m_fSpeed;
+    Vec3        m_vForce;
 
 public:
     virtual void begin() override;

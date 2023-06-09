@@ -10,7 +10,8 @@
 
 CPlayerScript::CPlayerScript()
 	: CScript((UINT)SCRIPT_TYPE::PLAYERSCRIPT)
-	, m_fSpeed(0.f)
+	, m_fSpeed(2000.f)
+	, m_vForce(0.f)
 {
 	AddScriptParam(SCRIPT_PARAM::FLOAT, &m_fSpeed, "Speed");
 }
@@ -28,10 +29,11 @@ void CPlayerScript::begin()
 void CPlayerScript::tick()
 {
 	Vec3 vCurPos = Transform()->GetRelativePos();
+	
 
-	if (KEY_TAP(KEY::R))
+	if (KEY_PRESSED(KEY::R))
 	{
-		vCurPos.y += 200.f;
+		vCurPos.y += DT * 100.f;
 
 	}
 
@@ -40,7 +42,7 @@ void CPlayerScript::tick()
 	{
 		for (int i = 0; i < 4; ++i)
 		{
-			vCurPos.y += DT * m_fSpeed;
+			m_vForce.z += DT * m_fSpeed;
 		}
 	}
 
@@ -48,7 +50,7 @@ void CPlayerScript::tick()
 	{
 		for (int i = 0; i < 4; ++i)
 		{
-			vCurPos.y -= DT * m_fSpeed;
+			m_vForce.z -= DT * m_fSpeed;
 		}
 	}
 
@@ -56,7 +58,7 @@ void CPlayerScript::tick()
 	{
 		for (int i = 0; i < 4; ++i)
 		{
-			vCurPos.x -= DT * m_fSpeed;
+			m_vForce.x -= DT * m_fSpeed;
 		}
 	}
 
@@ -64,7 +66,7 @@ void CPlayerScript::tick()
 	{
 		for (int i = 0; i < 4; ++i)
 		{
-			vCurPos.x += DT * m_fSpeed;
+			m_vForce.x += DT * m_fSpeed;
 		}
 	}
 
@@ -75,8 +77,12 @@ void CPlayerScript::tick()
 		Transform()->SetRelativeRot(vRot);
 	}
 
-	Transform()->SetRelativePos(vCurPos);		
-	PhysXMgr::GetInst()->GetTestActor()->setGlobalPose(physx::PxTransform(vCurPos.x, vCurPos.y, vCurPos.z));
+	Transform()->SetRelativePos(vCurPos);	
+
+	//// 물리월드에서 변형된 좌표값 가져오기
+	//PhysXMgr::GetInst()->GetTestActor()->setGlobalPose(physx::PxTransform(vCurPos.x, vCurPos.y, vCurPos.z));
+	//PxVec3 PxForce = PxVec3(m_vForce.x, m_vForce.y, m_vForce.z);
+	//PhysXMgr::GetInst()->GetTestActor()->addForce(PxForce);
 
 	//if (KEY_TAP(KEY::SPACE))
 	//{

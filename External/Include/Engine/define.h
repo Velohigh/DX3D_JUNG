@@ -238,6 +238,7 @@ enum class SHAPE_TYPE
 	CIRCLE,
 	CUBE,
 	SPHERE,
+	FRUSTUM,
 	END,
 };
 

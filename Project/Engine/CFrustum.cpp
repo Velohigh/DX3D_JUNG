@@ -2,10 +2,15 @@
 #include "CFrustum.h"
 
 #include "CCamera.h"
+#include "CMesh.h"
+#include "ptr.h"
+#include "CResMgr.h"
+#include "CTransform.h"
 
 CFrustum::CFrustum(CCamera* _pOwner)
 	: m_pOwner(_pOwner)
 	, m_arrFace{}
+	, m_DebugShape(false)
 {
 	// 투영공간 좌표
 	//     4 ------ 5
@@ -48,6 +53,13 @@ void CFrustum::finaltick()
 	m_arrFace[FT_RIGHT] = XMPlaneFromPoints(vWorldPos[1], vWorldPos[5], vWorldPos[6]);
 	m_arrFace[FT_TOP] = XMPlaneFromPoints(vWorldPos[4], vWorldPos[5], vWorldPos[1]);
 	m_arrFace[FT_BOT] = XMPlaneFromPoints(vWorldPos[2], vWorldPos[6], vWorldPos[7]);
+
+	// 디버그 셰이프 ON 이면 카메라 시야범위 표시
+	if (m_DebugShape)
+	{
+		// WVP .. W가 나오는 역행렬 구해놨음...
+		DrawDebugFrustum(matInv, Vec4(0.f, 1.f, 0.f, 1.f));
+	}
 }
 
 bool CFrustum::FrustumCheckByPoint(Vec3 _vWorldPos)

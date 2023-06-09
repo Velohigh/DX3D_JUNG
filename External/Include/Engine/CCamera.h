@@ -54,6 +54,8 @@ public:
     const Matrix& GetProjMat() { return m_matProj; }
     const Matrix& GetProjMatInv() { return m_matProjInv; }
 
+    CFrustum& GetFrustum() { return m_Frustum; }
+
 public:
     void SortObject();
     void render();

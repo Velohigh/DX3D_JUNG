@@ -159,6 +159,21 @@ void DrawDebugSphere(const Matrix& _matWorld, Vec4 _vColor, float _fTime)
 	CRenderMgr::GetInst()->AddDebugShapeInfo(info);
 }
 
+void DrawDebugFrustum(const Matrix& _matWorld, Vec4 _vColor, float _fTime)
+{
+	tDebugShapeInfo info = {};
+
+	info.matWorld = _matWorld;
+	info.eShape = SHAPE_TYPE::FRUSTUM;
+	info.fMaxTime = _fTime;
+	info.vColor = _vColor;
+
+	CRenderMgr::GetInst()->AddDebugShapeInfo(info);
+
+}
+
+
+
 
 const char* ToString(RES_TYPE type)
 {
