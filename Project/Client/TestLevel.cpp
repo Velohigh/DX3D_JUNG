@@ -124,8 +124,7 @@ void CreateTestLevel()
 	pSphere->MeshRender()->GetMaterial()->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_03_N.tga"));
 	
 	SpawnGameObject(pSphere, Vec3(0.f, 0.f, 0.f), 0);
-	//PhysXMgr::GetInst()->CreateDynamic(PxTransform(PxVec3(0, 500, 0)), PxSphereGeometry(25.f), pSphere);
-
+	PhysXMgr::GetInst()->CreateDynamic(PxTransform(PxVec3(0, 500, 0)), PxSphereGeometry(25.f), pSphere);
 
 	// 충돌 시킬 레이어 짝 지정
 	CCollisionMgr::GetInst()->LayerCheck(L"Player", L"Monster");

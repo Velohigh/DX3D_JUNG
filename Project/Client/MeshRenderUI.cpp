@@ -112,6 +112,22 @@ int MeshRenderUI::render_update()
 		pListUI->AddDynamic_Select(this, (UI_DELEGATE_1)&MeshRenderUI::SelectMaterial);
 	}
 
+	bool bFrustumCheck = GetTarget()->MeshRender()->IsUseFrustumCheck();
+	ImGui::Checkbox("UseBounding", &bFrustumCheck);
+	GetTarget()->MeshRender()->SetFrustumCheck(bFrustumCheck);
+	if(bFrustumCheck)
+	{
+		float fBounding = GetTarget()->MeshRender()->GetBounding();
+		ImGui::DragFloat("Bounding", &fBounding);
+		GetTarget()->MeshRender()->SetBounding(fBounding);
+
+		bool bBoundCheck = GetTarget()->MeshRender()->IsUseBoundDebug();
+		ImGui::Checkbox("DebugRender", &bBoundCheck);
+		GetTarget()->MeshRender()->SetBoundDebug(bBoundCheck);
+
+	}
+
+
 	return TRUE;
 }
 

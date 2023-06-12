@@ -25,6 +25,7 @@ void DrawDebugSphere(Vec3 _vWorldPos, float _fRadius, Vec4 _vColor, Vec3 _vRotat
 void DrawDebugSphere(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
 
 void DrawDebugFrustum(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
+void DrawDebugBounding(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
 
 
 

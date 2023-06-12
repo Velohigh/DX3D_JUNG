@@ -1,8 +1,12 @@
 #include "pch.h"
 #include "CMeshRender.h"
 
+#include "CCamera.h"
+
 #include "CTransform.h"
 #include "CAnimator2D.h"
+#include "CLevelMgr.h"
+#include "CLevel.h"
 
 CMeshRender::CMeshRender()
 	: CRenderComponent(COMPONENT_TYPE::MESHRENDER)		
@@ -15,6 +19,28 @@ CMeshRender::~CMeshRender()
 
 void CMeshRender::finaltick()
 {
+	Vec3 MyWorldPos = Transform()->GetWorldPos();
+	Vec3 LookCamDir;
+	Matrix CamViewInv;
+
+	CGameObject* MainCamObj = CLevelMgr::GetInst()->GetCurLevel()->FindObjectByName(L"MainCamera");
+
+	if (nullptr != MainCamObj)
+	{
+		Vec3 CamWorldPos = MainCamObj->Transform()->GetWorldPos();
+
+		LookCamDir = CamWorldPos - MyWorldPos;
+		//LookCamDir.Normalize();
+
+		CamViewInv = MainCamObj->Camera()->GetViewMat();
+	//Transform()->SetRelativeRot(CamViewInv);
+	}
+
+	// Sphere µð¹ö±× ·»´õ
+	if (IsUseBoundDebug())
+	{
+		DrawDebugCircle(MyWorldPos, GetBounding(), Vec4(0,0,1,1), LookCamDir);
+	}
 }
 
 void CMeshRender::render()

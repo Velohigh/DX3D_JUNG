@@ -172,6 +172,18 @@ void DrawDebugFrustum(const Matrix& _matWorld, Vec4 _vColor, float _fTime)
 
 }
 
+void DrawDebugBounding(const Matrix& _matWorld, Vec4 _vColor, float _fTime)
+{
+	tDebugShapeInfo info = {};
+
+	info.matWorld = _matWorld;
+	info.eShape = SHAPE_TYPE::SPHERE;
+	info.fMaxTime = _fTime;
+	info.vColor = _vColor;
+
+	CRenderMgr::GetInst()->AddDebugShapeInfo(info);
+}
+
 
 
 
