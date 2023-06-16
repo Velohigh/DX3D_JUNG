@@ -187,6 +187,7 @@ call EngineCopy.bat</Command>
     <ClInclude Include="CFrustum.h" />
     <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CGraphicsShader.h" />
+    <ClInclude Include="CHeightMapShader.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CLandScape.h" />
     <ClInclude Include="CLayer.h" />
@@ -249,8 +250,10 @@ call EngineCopy.bat</Command>
     <ClCompile Include="CFrustum.cpp" />
     <ClCompile Include="CGameObject.cpp" />
     <ClCompile Include="CGraphicsShader.cpp" />
+    <ClCompile Include="CHeightMapShader.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CLandScape.cpp" />
+    <ClCompile Include="CLandScape_init.cpp" />
     <ClCompile Include="CLayer.cpp" />
     <ClCompile Include="CLevel.cpp" />
     <ClCompile Include="CLevelMgr.cpp" />
@@ -329,6 +332,12 @@ call EngineCopy.bat</Command>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="heightmap.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="landscape.fx">

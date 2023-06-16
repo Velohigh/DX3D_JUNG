@@ -108,4 +108,14 @@ struct tParticleModule
     int modulepad;    
 };
 
+
+
+
+struct tRaycastOut
+{
+    float2 vUV;
+    int iDist;
+    int success;
+};
+
 #endif
