@@ -178,6 +178,10 @@ struct tRaycastOut
 	int  bSuccess;
 };
 
+struct tWeight_4
+{
+	float arrWeight[4];
+};
 
 
 

@@ -61,6 +61,9 @@
     <FxCompile Include="raycast.fx">
       <Filter>05. ShaderCode\03. Compute\LandScape\RayCast</Filter>
     </FxCompile>
+    <FxCompile Include="weightmap.fx">
+      <Filter>05. ShaderCode\03. Compute\LandScape\WeightMap</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEntity.cpp" />
@@ -226,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="CRaycastShader.cpp">
       <Filter>05. ShaderCode\03. Compute\LandScape\RayCast</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeightMapShader.cpp">
+      <Filter>05. ShaderCode\03. Compute\LandScape\WeightMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,6 +410,9 @@
     <ClInclude Include="CRaycastShader.h">
       <Filter>05. ShaderCode\03. Compute\LandScape\RayCast</Filter>
     </ClInclude>
+    <ClInclude Include="CWeightMapShader.h">
+      <Filter>05. ShaderCode\03. Compute\LandScape\WeightMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01. header">
@@ -477,6 +486,9 @@
     </Filter>
     <Filter Include="05. ShaderCode\03. Compute\LandScape\RayCast">
       <UniqueIdentifier>{4f2d492e-2830-4dd9-acdb-a0934b323b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\03. Compute\LandScape\WeightMap">
+      <UniqueIdentifier>{1d879f11-d5ef-4b15-bb8e-2729bba6e593}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
