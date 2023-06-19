@@ -15,6 +15,10 @@ void CLandScape::init()
 	CreateComputeShader();
 
 	CreateTexture();
+
+	// 레이캐스팅 결과 받는 버퍼
+	m_pCrossBuffer = new CStructuredBuffer;
+	m_pCrossBuffer->Create(sizeof(tRaycastOut), 1, SB_TYPE::READ_WRITE, true);
 }
 
 void CLandScape::CreateMesh()
@@ -75,6 +79,17 @@ void CLandScape::CreateComputeShader()
 		m_pCSHeightMap = new CHeightMapShader(32, 32, 1);
 		m_pCSHeightMap->CreateComputeShader(L"shader\\heightmap.fx", "CS_HeightMap");
 		CResMgr::GetInst()->AddRes<CComputeShader>(L"HeightMapShader", m_pCSHeightMap.Get());
+	}
+
+	// =====================
+	// 지형 피킹 컴퓨트 쉐이더
+	// =====================
+	m_pCSRaycast = (CRaycastShader*)CResMgr::GetInst()->FindRes<CComputeShader>(L"RaycastShader").Get();
+	if (nullptr == m_pCSRaycast)
+	{
+		m_pCSRaycast = new CRaycastShader(32, 32, 1);
+		m_pCSRaycast->CreateComputeShader(L"shader\\raycast.fx", "CS_Raycast");
+		CResMgr::GetInst()->AddRes<CComputeShader>(L"RaycastShader", m_pCSHeightMap.Get());
 	}
 }
 

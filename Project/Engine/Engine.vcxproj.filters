@@ -58,6 +58,9 @@
     <FxCompile Include="heightmap.fx">
       <Filter>05. ShaderCode\03. Compute\LandScape\HeightMap</Filter>
     </FxCompile>
+    <FxCompile Include="raycast.fx">
+      <Filter>05. ShaderCode\03. Compute\LandScape\RayCast</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEntity.cpp" />
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="CHeightMapShader.cpp">
       <Filter>05. ShaderCode\03. Compute\LandScape\HeightMap</Filter>
+    </ClCompile>
+    <ClCompile Include="CRaycastShader.cpp">
+      <Filter>05. ShaderCode\03. Compute\LandScape\RayCast</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,6 +401,9 @@
     <ClInclude Include="CHeightMapShader.h">
       <Filter>05. ShaderCode\03. Compute\LandScape\HeightMap</Filter>
     </ClInclude>
+    <ClInclude Include="CRaycastShader.h">
+      <Filter>05. ShaderCode\03. Compute\LandScape\RayCast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01. header">
@@ -465,6 +474,9 @@
     </Filter>
     <Filter Include="03. CGameObject\Component\RenderComponent\LandScape">
       <UniqueIdentifier>{b84f6a0b-11d4-47a3-8f01-a9987a79e6e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\03. Compute\LandScape\RayCast">
+      <UniqueIdentifier>{4f2d492e-2830-4dd9-acdb-a0934b323b4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

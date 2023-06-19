@@ -23,10 +23,10 @@ private:
     vector<tDebugShapeInfo>     m_vecShapeInfo;
 
     vector<CLight2D*>           m_vecLight2D;
-    CStructuredBuffer*          m_Light2DBuffer;
+    CStructuredBuffer* m_Light2DBuffer;
 
     vector<CLight3D*>           m_vecLight3D;
-    CStructuredBuffer*          m_Light3DBuffer;
+    CStructuredBuffer* m_Light3DBuffer;
 
 
     void (CRenderMgr::* RENDER_FUNC)(void);
@@ -55,13 +55,8 @@ public:
     void AddDebugShapeInfo(const tDebugShapeInfo& _info) { m_vecShapeInfo.push_back(_info); }
     vector<tDebugShapeInfo>& GetDebugShapeInfo() { return m_vecShapeInfo; }
 
-    CCamera* GetMainCam()
-    {
-        if (m_vecCam.empty())
-            return nullptr;
+    CCamera* GetMainCam();
 
-        return m_vecCam[0];
-    }
 
     const vector<CLight3D*> GetLight3D() { return m_vecLight3D; }
 

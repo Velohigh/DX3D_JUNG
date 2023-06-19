@@ -10,7 +10,7 @@ CTileMap::CTileMap()
 	: CRenderComponent(COMPONENT_TYPE::TILEMAP)
 	, m_iTileCountX(1)
 	, m_iTileCountY(1)
-{	
+{
 	SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"RectMesh"));
 	SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"TileMapMtrl"));
 
@@ -50,7 +50,7 @@ void CTileMap::render()
 
 void CTileMap::UpdateData()
 {
-	m_Buffer->SetData(m_vecTile.data(), sizeof(tTile) * m_vecTile.size());
+	m_Buffer->SetData(m_vecTile.data(), sizeof(tTile) * (UINT)m_vecTile.size());
 	m_Buffer->UpdateData(20, PIPELINE_STAGE::PS_PIXEL);
 }
 
@@ -71,7 +71,7 @@ void CTileMap::SetTileCount(UINT _iXCount, UINT _iYCount)
 	for (size_t i = 0; i < m_iTileCountY; ++i)
 	{
 		for (size_t j = 0; j < m_iTileCountX; ++j)
-		{			
+		{
 			m_vecTile[i * m_iTileCountX + j].vLeftTop.x = m_vSliceSize.x * j;
 			m_vecTile[i * m_iTileCountX + j].vLeftTop.y = 0.f;
 			m_vecTile[i * m_iTileCountX + j].vSlice = m_vSliceSize;
@@ -87,7 +87,7 @@ void CTileMap::SaveToLevelFile(FILE* _File)
 
 	fwrite(&m_iTileCountX, sizeof(UINT), 1, _File);
 	fwrite(&m_iTileCountY, sizeof(UINT), 1, _File);
-	fwrite(&m_vSliceSize, sizeof(Vec2), 1, _File);	
+	fwrite(&m_vSliceSize, sizeof(Vec2), 1, _File);
 	fwrite(m_vecTile.data(), sizeof(tTile), m_vecTile.size(), _File);
 }
 
