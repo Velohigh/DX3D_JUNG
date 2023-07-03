@@ -183,7 +183,14 @@ struct tWeight_4
 	float arrWeight[4];
 };
 
-
+// Material 계수
+struct tMtrlData
+{
+	Vec4 vDiff;
+	Vec4 vSpec;
+	Vec4 vAmb;
+	Vec4 vEmv;
+};
 
 // ===================
 // 상수버퍼 대응 구조체
@@ -206,6 +213,8 @@ extern tTransform g_transform;
 
 struct tMtrlConst
 {
+	tMtrlData mtrl;
+
 	int arrInt[4];
 	float arrFloat[4];
 	Vec2 arrV2[4];

@@ -66,7 +66,7 @@ public:
 
 
 private:
-    virtual void UpdateData() override;
+    void UpdateData();
 
 public:
     CTexture(bool _bEngine = false);
