@@ -12,7 +12,8 @@ void CLandScape::init()
 {
 	SetFace(1, 1);
 
-	SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"LandScapeMtrl"), 0);
+	// 주성씨 코드 수정
+	//SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"LandScapeMtrl"), 0);
 
 	CreateComputeShader();
 
@@ -79,6 +80,9 @@ void CLandScape::CreateMesh()
 	Ptr<CMesh> pMesh = new CMesh;
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
 	SetMesh(pMesh);
+	// 주성씨 코드수정
+	SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"LandScapeMtrl"), 0);
+
 }
 
 void CLandScape::CreateComputeShader()
