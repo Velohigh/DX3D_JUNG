@@ -21,7 +21,10 @@ void CLandScape::init()
 	m_pCrossBuffer->Create(sizeof(tRaycastOut), 1, SB_TYPE::READ_WRITE, true);
 
 	// Å¸ÀÏ ÅØ½ºÃÄ(Color, Normal È¥ÇÕ, ÃÑ 6Àå)	
-	m_pTileArrTex = CResMgr::GetInst()->Load<CTexture>(L"texture\\tile\\TILE_ARRR.dds", L"texture\\tile\\TILE_ARRR.dds");
+	//m_pTileArrTex = CResMgr::GetInst()->Load<CTexture>(L"texture\\tile\\TILE_ARRR.dds", L"texture\\tile\\TILE_ARRR.dds");
+	//m_pTileArrTex = CResMgr::GetInst()->LoadTexture(L"texture\\tile\\TILE_ARRR.dds", L"texture\\tile\\TILE_ARRR.dds", 8);
+	m_pTileArrTex = CResMgr::GetInst()->FindRes<CTexture>(L"texture\\tile\\TILE_ARRR.dds");
+	m_pTileArrTex->GenerateMip(8);
 }
 
 void CLandScape::CreateMesh()
