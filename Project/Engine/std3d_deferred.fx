@@ -11,8 +11,6 @@
 // g_tex_0 : Color Texture
 // g_tex_1 : Normal Texture
 // ========================
-
-
 struct VS_IN
 {
     float3 vPos : POSITION;
@@ -21,6 +19,9 @@ struct VS_IN
     float3 vTangent : TANGENT;
     float3 vNormal : NORMAL;
     float3 vBinormal : BINORMAL;
+
+    float4 vWeights : BLENDWEIGHT;
+    float4 vIndices : BLENDINDICES;
 };
 
 struct VS_OUT
@@ -39,6 +40,11 @@ VS_OUT VS_Std3D_Deferred(VS_IN _in)
 {
     VS_OUT output = (VS_OUT) 0.f;
         
+    if (g_iAnim)
+    {
+        Skinning(_in.vPos, _in.vTangent, _in.vBinormal, _in.vNormal, _in.vWeights, _in.vIndices, 0);
+    }
+
     output.vPosition = mul(float4(_in.vPos, 1.f), g_matWVP);
     output.vUV = _in.vUV;
     
@@ -99,6 +105,5 @@ PS_OUT PS_Std3D_Deferred(VS_OUT _in) : SV_Target
         
     return output;
 }
-
 
 #endif

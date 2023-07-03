@@ -41,6 +41,11 @@ const wchar_t* ToWSTring(COMPONENT_TYPE);
 // Relative Path 가져오기
 wstring GetRelativePath(const wstring& _strBase, const wstring& _strPath);
 
+// FbxMatrix -> Matrix
+Matrix GetMatrixFromFbxMatrix(FbxAMatrix& _mat);
+
+
+
 // Save / Load
 void SaveWString(const wstring& _str, FILE* _File);
 void LoadWString(wstring& _str, FILE* _File);

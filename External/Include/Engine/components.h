@@ -15,10 +15,5 @@
 #include "CDecal.h"
 
 #include "CLandscape.h"	// 지형, 테셀레이션
-// Shadow ---->
-// FBX
-// #include "CAnimator3D.h"  
-// 최적화, Instancing
-
-
+#include "CAnimator3D.h"  
 //#include "CCollider3D.h"

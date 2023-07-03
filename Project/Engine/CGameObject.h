@@ -7,6 +7,7 @@ class CTransform;
 class CMeshRender;
 class CCollider2D;
 class CAnimator2D;
+class CAnimator3D;
 class CLight2D;
 class CLight3D;
 class CCamera;
@@ -65,6 +66,7 @@ public:
     GET_COMPONENT(Decal, DECAL);
     GET_COMPONENT(LandScape, LANDSCAPE);
     GET_COMPONENT(Animator2D, ANIMATOR2D);
+    GET_COMPONENT(Animator3D, ANIMATOR3D);
 
     CRenderComponent* GetRenderComponent() const { return m_RenderCom; }
 

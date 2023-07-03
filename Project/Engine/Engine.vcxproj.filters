@@ -31,12 +31,6 @@
     <FxCompile Include="std3d.fx">
       <Filter>05. ShaderCode\02. Render\3D</Filter>
     </FxCompile>
-    <FxCompile Include="particle_update.fx">
-      <Filter>05. ShaderCode\03. Compute</Filter>
-    </FxCompile>
-    <FxCompile Include="setcolor.fx">
-      <Filter>05. ShaderCode\03. Compute</Filter>
-    </FxCompile>
     <FxCompile Include="std3d_deferred.fx">
       <Filter>05. ShaderCode\02. Render\3D</Filter>
     </FxCompile>
@@ -64,14 +58,20 @@
     <FxCompile Include="weightmap.fx">
       <Filter>05. ShaderCode\03. Compute\LandScape\WeightMap</Filter>
     </FxCompile>
+    <FxCompile Include="particle_update.fx">
+      <Filter>05. ShaderCode\03. Compute\Particle</Filter>
+    </FxCompile>
+    <FxCompile Include="setcolor.fx">
+      <Filter>05. ShaderCode\03. Compute\SetColor</Filter>
+    </FxCompile>
+    <FxCompile Include="animation3d.fx">
+      <Filter>05. ShaderCode\03. Compute\AnimationUpdate</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEntity.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="CAnim2D.cpp">
-      <Filter>03. CGameObject\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="CAnimator2D.cpp">
       <Filter>03. CGameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="CCollider2D.cpp">
@@ -173,12 +173,6 @@
     <ClCompile Include="CGameObject.cpp">
       <Filter>03. CGameObject</Filter>
     </ClCompile>
-    <ClCompile Include="CParticleUpdateShader.cpp">
-      <Filter>05. ShaderCode\03. Compute</Filter>
-    </ClCompile>
-    <ClCompile Include="CSetColorShader.cpp">
-      <Filter>05. ShaderCode\03. Compute</Filter>
-    </ClCompile>
     <ClCompile Include="CConstBuffer.cpp">
       <Filter>07. Buffer</Filter>
     </ClCompile>
@@ -239,13 +233,25 @@
     <ClCompile Include="CFBXLoader.cpp">
       <Filter>02. Manager\01. ResMgr</Filter>
     </ClCompile>
+    <ClCompile Include="CParticleUpdateShader.cpp">
+      <Filter>05. ShaderCode\03. Compute\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="CSetColorShader.cpp">
+      <Filter>05. ShaderCode\03. Compute\SetColor</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator2D.cpp">
+      <Filter>03. CGameObject\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator3D.cpp">
+      <Filter>03. CGameObject\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation3DShader.cpp">
+      <Filter>05. ShaderCode\03. Compute\AnimationUpdate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CEntity.h" />
     <ClInclude Include="CAnim2D.h">
-      <Filter>03. CGameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="CAnimator2D.h">
       <Filter>03. CGameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="CCollider2D.h">
@@ -368,12 +374,6 @@
     <ClInclude Include="CGameObject.h">
       <Filter>03. CGameObject</Filter>
     </ClInclude>
-    <ClInclude Include="CParticleUpdateShader.h">
-      <Filter>05. ShaderCode\03. Compute</Filter>
-    </ClInclude>
-    <ClInclude Include="CSetColorShader.h">
-      <Filter>05. ShaderCode\03. Compute</Filter>
-    </ClInclude>
     <ClInclude Include="CConstBuffer.h">
       <Filter>07. Buffer</Filter>
     </ClInclude>
@@ -424,6 +424,21 @@
     </ClInclude>
     <ClInclude Include="CFBXLoader.h">
       <Filter>02. Manager\01. ResMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CParticleUpdateShader.h">
+      <Filter>05. ShaderCode\03. Compute\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetColorShader.h">
+      <Filter>05. ShaderCode\03. Compute\SetColor</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator2D.h">
+      <Filter>03. CGameObject\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator3D.h">
+      <Filter>03. CGameObject\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation3DShader.h">
+      <Filter>05. ShaderCode\03. Compute\AnimationUpdate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -501,6 +516,18 @@
     </Filter>
     <Filter Include="05. ShaderCode\03. Compute\LandScape\WeightMap">
       <UniqueIdentifier>{1d879f11-d5ef-4b15-bb8e-2729bba6e593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\03. Compute\Particle">
+      <UniqueIdentifier>{50736900-17a7-4016-a05d-2b590044c3a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\03. Compute\SetColor">
+      <UniqueIdentifier>{3dd6235e-dff1-44d1-9448-5bddba12ab54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ShaderCode\03. Compute\AnimationUpdate">
+      <UniqueIdentifier>{6b10524c-4b29-4454-8bac-083ef114b423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. CGameObject\Component\Animator">
+      <UniqueIdentifier>{fee4b33c-4820-4029-a305-f10f605bdd40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
