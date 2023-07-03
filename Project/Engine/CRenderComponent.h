@@ -6,11 +6,20 @@
 #include "CMaterial.h"
 #include "ptr.h"
 
+
+struct tMtrlSet
+{
+    Ptr<CMaterial>  pSharedMtrl;    // 공유 메테리얼
+    Ptr<CMaterial>  pDynamicMtrl;   // 공유 메테리얼의 복사본    
+    Ptr<CMaterial>  pCurMtrl;       // 현재 사용 할 메테리얼
+};
+
 class CRenderComponent :
     public CComponent
 {
 private:
     Ptr<CMesh>              m_pMesh;
+    vector<tMtrlSet>        m_vecMtrls;     // 재질    
 
     Ptr<CMaterial>          m_pSharedMtrl;      // 원본 메테리얼
     Ptr<CMaterial>          m_pDynamicMtrl;     // SharedMaterial 복사본
@@ -27,13 +36,16 @@ public:
     virtual void render_depthmap();
 
 public:
-    void SetMesh(Ptr<CMesh> _Mesh) { m_pMesh = _Mesh; }
-    void SetMaterial(Ptr<CMaterial> _Mtrl);
+    void SetMesh(Ptr<CMesh> _Mesh);
+    void SetMaterial(Ptr<CMaterial> _Mtrl, UINT _idx);
 
     Ptr<CMesh> GetMesh() { return m_pMesh; }
-    Ptr<CMaterial> GetMaterial() { return m_pCurrentMtrl; }
-    Ptr<CMaterial> GetSharedMaterial() { return m_pSharedMtrl; }
-    Ptr<CMaterial> GetDynamicMaterial();
+
+    Ptr<CMaterial> GetMaterial(UINT _idx);
+    Ptr<CMaterial> GetSharedMaterial(UINT _idx);
+    Ptr<CMaterial> GetDynamicMaterial(UINT _idx);
+
+    UINT GetMtrlCount() { return (UINT)m_vecMtrls.size(); }
 
     void SetFrustumCheck(bool _bUse) { m_bFrustumCheck = _bUse; }
     bool IsUseFrustumCheck() { return m_bFrustumCheck; }

@@ -9,7 +9,7 @@ CDecal::CDecal()
 	, m_Light(0)
 {
 	SetMesh(CResMgr::GetInst()->FindRes<CMesh>(L"CubeMesh"));
-	SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DecalMtrl"));
+	SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"DecalMtrl"), 0);
 }
 
 CDecal::~CDecal()
@@ -30,10 +30,10 @@ void CDecal::render()
 {
 	Transform()->UpdateData();
 
-	GetMaterial()->SetScalarParam(INT_0, &m_Light);
-	GetMaterial()->SetTexParam(TEX_0, m_DecalTex);
-	GetMaterial()->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"PositionTargetTex"));
-	GetMaterial()->UpdateData();
+	GetMaterial(0)->SetScalarParam(INT_0, &m_Light);
+	GetMaterial(0)->SetTexParam(TEX_0, m_DecalTex);
+	GetMaterial(0)->SetTexParam(TEX_1, CResMgr::GetInst()->FindRes<CTexture>(L"PositionTargetTex"));
+	GetMaterial(0)->UpdateData();
 
-	GetMesh()->render();
+	GetMesh()->render(0);
 }

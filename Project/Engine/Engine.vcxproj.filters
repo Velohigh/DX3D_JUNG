@@ -233,6 +233,12 @@
     <ClCompile Include="CWeightMapShader.cpp">
       <Filter>05. ShaderCode\03. Compute\LandScape\WeightMap</Filter>
     </ClCompile>
+    <ClCompile Include="CMeshData.cpp">
+      <Filter>04. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CFBXLoader.cpp">
+      <Filter>02. Manager\01. ResMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CEntity.h" />
@@ -412,6 +418,12 @@
     </ClInclude>
     <ClInclude Include="CWeightMapShader.h">
       <Filter>05. ShaderCode\03. Compute\LandScape\WeightMap</Filter>
+    </ClInclude>
+    <ClInclude Include="CMeshData.h">
+      <Filter>04. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CFBXLoader.h">
+      <Filter>02. Manager\01. ResMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

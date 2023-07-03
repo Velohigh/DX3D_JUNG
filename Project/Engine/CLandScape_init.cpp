@@ -10,7 +10,9 @@
 
 void CLandScape::init()
 {
-	SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"LandScapeMtrl"));
+	SetFace(1, 1);
+
+	SetMaterial(CResMgr::GetInst()->FindRes<CMaterial>(L"LandScapeMtrl"), 0);
 
 	CreateComputeShader();
 
@@ -29,6 +31,11 @@ void CLandScape::init()
 
 void CLandScape::CreateMesh()
 {
+	if (GetMesh().Get())
+	{
+		SetMesh(nullptr);
+	}
+
 	Vtx v;
 	vector<Vtx> vecVtx;
 

@@ -45,7 +45,7 @@ void CMeshRender::finaltick()
 
 void CMeshRender::render()
 {	
-	if (nullptr == GetMesh() || nullptr == GetMaterial())
+	if (nullptr == GetMesh() || nullptr == GetMaterial(0))
 		return;
 
 	// Transform 에 UpdateData 요청
@@ -58,10 +58,10 @@ void CMeshRender::render()
 	}
 
 	// 재질 업데이트
-	GetMaterial()->UpdateData();
+	GetMaterial(0)->UpdateData();
 
 	// 렌더
-	GetMesh()->render();
+	GetMesh()->render(0);
 
 	// Animation 관련 정보 제거
 	if (Animator2D())
