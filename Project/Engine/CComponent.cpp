@@ -3,7 +3,7 @@
 
 CComponent::CComponent(COMPONENT_TYPE _Type)
 	: m_pOwner(nullptr)
-	, m_Type(_Type)	
+	, m_Type(_Type)
 {
 }
 
@@ -17,3 +17,9 @@ CComponent::CComponent(const CComponent& _Other)
 CComponent::~CComponent()
 {
 }
+
+void CComponent::finaltick_module()
+{
+	finaltick();
+}
+

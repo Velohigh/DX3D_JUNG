@@ -25,15 +25,15 @@ void CTransform::finaltick()
 	m_matWorldScale = XMMatrixIdentity();
 	m_matWorldScale = XMMatrixScaling(m_vRelativeScale.x, m_vRelativeScale.y, m_vRelativeScale.z);
 
-	Matrix matRot = XMMatrixIdentity();
-	matRot = XMMatrixRotationX(m_vRelativeRot.x);
-	matRot *= XMMatrixRotationY(m_vRelativeRot.y);
-	matRot *= XMMatrixRotationZ(m_vRelativeRot.z);
+	m_matRelativeRot = XMMatrixRotationX(m_vRelativeRot.x);
+	m_matRelativeRot *= XMMatrixRotationY(m_vRelativeRot.y);
+	m_matRelativeRot *= XMMatrixRotationZ(m_vRelativeRot.z);
+
 
 	Matrix matTranslation = XMMatrixTranslation(m_vRelativePos.x, m_vRelativePos.y, m_vRelativePos.z);
 
 
-	m_matWorld = m_matWorldScale * matRot * matTranslation;
+	m_matWorld = m_matWorldScale * m_matRelativeRot * matTranslation;
 
 	Vec3 vDefaultDir[3] = {
 		  Vec3(1.f, 0.f, 0.f)
@@ -43,7 +43,7 @@ void CTransform::finaltick()
 
 	for (int i = 0; i < 3; ++i)
 	{
-		m_vWorldDir[i] = m_vRelativeDir[i] = XMVector3TransformNormal(vDefaultDir[i], matRot);
+		m_vWorldDir[i] = m_vRelativeDir[i] = XMVector3TransformNormal(vDefaultDir[i], m_matRelativeRot);
 	}
 
 	// 부모 오브젝트 확인
@@ -90,6 +90,25 @@ void CTransform::UpdateData()
 	pTransformBuffer->SetData(&g_transform);
 	pTransformBuffer->UpdateData();
 }
+
+
+Matrix CTransform::GetWorldRotation()
+{
+	Matrix matWorldRot = m_matRelativeRot;
+
+	CGameObject* pParent = GetOwner()->GetParent();
+
+	while (pParent)
+	{
+		matWorldRot *= pParent->Transform()->m_matRelativeRot;
+		pParent = pParent->GetParent();
+	}
+
+	return matWorldRot;
+}
+
+
+
 
 void CTransform::SaveToLevelFile(FILE* _File)
 {

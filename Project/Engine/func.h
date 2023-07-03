@@ -28,7 +28,7 @@ void DrawDebugFrustum(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f)
 void DrawDebugBounding(const Matrix& _matWorld, Vec4 _vColor, float _fTime = 0.f);
 
 
-
+Vec3 DecomposeRotMat(const Matrix& _matRot);
 
 
 const char* ToString(RES_TYPE);

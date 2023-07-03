@@ -15,28 +15,31 @@ private:
     Ptr<CMaterial>  m_LightMtrl;
 
     UINT            m_iLightIdx;
-    LIGHT_TYPE      m_LightType;
+
+    CGameObject* m_pLightCam;    // 광원 시점용 카메라
 
 
 public:
     void SetLightType(LIGHT_TYPE _Type);
-    void SetLightDirection(Vec3 _vDir) { m_LightInfo.vWorldDir = _vDir; }
     void SetLightDiffuse(Vec3 _vDiffuse) { m_LightInfo.Color.vDiffuse = _vDiffuse; }
     void SetLightSpecular(Vec3 _vSpec) { m_LightInfo.Color.vSpecular = _vSpec; }
     void SetLightAmbient(Vec3 _vAmbient) { m_LightInfo.Color.vAmbient = _vAmbient; }
     void SetRadius(float _Radius) { m_LightInfo.Radius = _Radius; }
     void SetAngle(float _Angle) { m_LightInfo.Angle = _Angle; }
+    void SetLightDirection(Vec3 _vDir);
 
-    const float& GetRadius() { return m_LightInfo.Radius; }
-
-
-    const LIGHT_TYPE& GetLightType() { return m_LightType; }
 
     const tLightInfo& GetLightInfo() { return m_LightInfo; }
+    Vec3 GetLightColor() { return m_LightInfo.Color.vDiffuse; }
+    LIGHT_TYPE GetLightType() { return (LIGHT_TYPE)m_LightInfo.LightType; }
+    float GetRadius() { return m_LightInfo.Radius; }
+    float GetAngle() { return m_LightInfo.Angle; }
+    Vec3 GetLightDirection();
 
 public:
     virtual void finaltick() override;
     void render();
+    void render_depthmap();
 
     virtual void SaveToLevelFile(FILE* _File) override;
     virtual void LoadFromLevelFile(FILE* _File) override;
@@ -44,6 +47,7 @@ public:
     CLONE(CLight3D);
 public:
     CLight3D();
+    CLight3D(const CLight3D& _origin);
     ~CLight3D();
 };
 

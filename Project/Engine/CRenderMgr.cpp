@@ -75,6 +75,9 @@ void CRenderMgr::render()
 
 void CRenderMgr::render_play()
 {
+    // Directional 광원 시점에서 Shadow맵핑을 위한 DepthMap 생성
+    render_dynamic_shadowdepth();
+
     // 카메라 기준 렌더링
     for (size_t i = 0; i < m_vecCam.size(); ++i)
     {
@@ -88,9 +91,27 @@ void CRenderMgr::render_play()
 
 void CRenderMgr::render_editor()
 {
+    // Directional 광원 시점에서 Shadow맵핑을 위한 DepthMap 생성
+    render_dynamic_shadowdepth();
+
     m_pEditorCam->SortObject();
     m_pEditorCam->render();
 }
+
+
+
+void CRenderMgr::render_dynamic_shadowdepth()
+{
+    m_MRT[(UINT)MRT_TYPE::SHADOW]->OMSet();
+
+    for (size_t i = 0; i < m_vecLight3D.size(); ++i)
+    {
+        if (LIGHT_TYPE::DIRECTIONAL == m_vecLight3D[i]->GetLightType())
+            m_vecLight3D[i]->render_depthmap();
+    }
+}
+
+
 
 
 int CRenderMgr::RegisterCamera(CCamera* _Cam, int _idx)
